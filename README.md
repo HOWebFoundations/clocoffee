@@ -6,12 +6,17 @@ Website for CloCoffee — a coffee shop known for three hand-painted can-shaped 
 
 ## Where things stand
 
-The plan of record is [`docs/site-plan.md`](docs/site-plan.md). It covers the creative concept
+The plan of record is [`docs/site-plan.md`](docs/site-plan.md); the visual identity is inventoried in
+[`docs/brand.md`](docs/brand.md). It covers the creative concept
 ("three cups, three worlds"), the section-by-section interaction spec, the asset manifest and where each asset
 comes from, the stack, a hard performance budget, and a three-week time-box.
 
 Read the **Open items** table at the end of that document first. Several of them — the menu and prices, the
 WhatsApp number, real photos of the shop — are blockers for Week 1, and none of them are code.
+
+One item outranks the rest: **it is not established that the three painted cups exist.** The brand assets
+supplied so far show a plain tumbler and a cream/espresso/bloom identity, with no painted cup anywhere. The
+site plan's creative spine assumes three of them. Until that is answered, sections 3–5 of the plan are drafts.
 
 ## Intended stack
 

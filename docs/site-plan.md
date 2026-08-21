@@ -7,6 +7,17 @@
 Confidence tags used throughout: **[Certain]** verified or non-negotiable, **[Likely]** reasoned judgement,
 **[Guessing]** assumption that needs confirming before anyone spends money or time on it.
 
+> ### ⚠ Sections 3–5 are provisional
+>
+> Five brand assets have since been reviewed — see [`brand.md`](brand.md). **None of them shows a
+> painted cup.** The supplied identity is cream, espresso brown, and one blue-violet/blush bloom; the
+> only cup in the set is an undecorated tumbler carrying the wordmark.
+>
+> The "three cups, three worlds" concept below therefore rests on an unconfirmed premise. Either the
+> painted cups exist and their photos simply weren't in that batch, or the identity has moved to
+> minimal single-cup and the interaction spine needs replacing. Until that is answered, treat the
+> creative concept, the section map, and the asset manifest as drafts. See `brand.md` §5.
+
 ---
 
 ## 1. Framing: Higgsfield is the asset factory, Next.js is the product
@@ -65,11 +76,17 @@ The cream-and-espresso base of the logo is the neutral stage. Each cup owns a co
 green and lemon yellow; blossom pink/magenta; ditsy multicolor — that takes over the screen when that cup is
 active. The bloom from the logo becomes the site's transition motif.
 
-- [Likely] Pull exact hex values from the existing stills in Figma rather than inventing a palette, and rebuild
-  the wordmark lettering as vector there. The Higgsfield output is raster — unusable for favicons, signage and
-  print. Keep the bloom as an alpha PNG.
-- [Likely] Blush pink and violet will fail WCAG AA as body text on cream — the same trap as brass gold on
-  thehowf.com. They are surfaces and display type only.
+- [Certain] The supplied assets are raster throughout. The wordmark lettering still needs vectorizing before
+  favicons, signage and print. Keep the bloom as an alpha PNG — and cut it off the opaque cream circle it
+  currently sits on, or it will not composite over dark sections.
+- [Certain] Espresso on cream measures ~11:1 in both directions — AAA, and unusually strong for a warm
+  palette. The site can run that pair everywhere with no accessibility tension.
+- [Certain] Blush fails on cream (~1.4:1) but is AAA on espresso (~8:1). The brass-gold trap from
+  thehowf.com applies to cream grounds and *inverts* on dark ones: blush display type on an espresso
+  section is available and looks deliberate. Mid violet fails on cream (~2.9:1); deep violet clears AA by
+  0.02, which is a rounding error rather than a margin.
+- Ratios above are computed from eyeballed hexes. Re-sample from source files before they reach code —
+  [`brand.md`](brand.md) §2 carries the values and the caveat.
 
 ---
 
@@ -83,7 +100,7 @@ active. The bloom from the logo becomes the site's transition motif.
 | 3 | Build your drink | Four steps: base (espresso, latte, iced, matcha), milk, sweetness, cup. Live preview swaps precomposed stills. Price in LBP and USD. Ends in "Send to WhatsApp" with the order text prefilled, plus "Save as image" | stills, cutouts |
 | 4 | Menu | Filterable grid; hover lifts a card and tints the page to its world color. Content from Supabase so Chloe can edit prices without a developer | menu photos |
 | 5 | The Verdict | Phone-framed 9:16 reels, sound on tap, rotating captions | reviewer clips |
-| 6 | The shop | Real interior photos, open-now indicator computed from hours, map, directions, WhatsApp | photos |
+| 6 | The shop | Real interior photos, open-now indicator computed from hours, map, directions, WhatsApp | photos — **not yet supplied**; the two storefront images on hand are concept renders of two different buildings and must not ship (`brand.md` §4) |
 | 7 | Footer | Curated static 6-tile Instagram grid, hours, socials | — |
 
 ### Micro-interactions
@@ -108,8 +125,11 @@ Every one of these collapses to static posters and fades under `prefers-reduced-
 
 | Asset | Source | Status | Use |
 |---|---|---|---|
-| Wordmark | Higgsfield, Jul | exists, raster | vectorize lettering in Figma, keep bloom as PNG |
-| 3 product stills on color-matched backgrounds | Higgsfield, Jul | exists | cup worlds, menu hero, OG images |
+| Wordmark | supplied, raster | exists | vectorize lettering, keep bloom as alpha PNG |
+| Bloom, isolated | supplied, raster on opaque cream | exists | favicon, transition motif — needs cutting to transparency |
+| Plain tumbler mockup | supplied | exists | product shot, OG image, builder preview |
+| Storefront renders ×2 | supplied | exists, **presentation only** | brand deck; not shippable as "the shop" |
+| 3 product stills on color-matched backgrounds | Higgsfield, Jul | **unverified** — not among the five assets supplied | cup worlds, menu hero, OG images |
 | 3 pour videos + hero loop | Higgsfield, Jul | exists | scrubbed hero, tap-to-pour |
 | Cup cutouts | `remove_background` on existing stills | new, low cost | parallax, builder, transitions |
 | 4K upscales of the 3 stills, 21:9 outpaint of hero, 9:16 reframes of pours | `upscale`, `outpaint`, `reframe` | new, low cost | large screens, mobile hero |
@@ -204,6 +224,9 @@ front of hotel and restaurant prospects.
 | Menu, prices, hours, address, handles, WhatsApp number | not supplied | Chloe |
 | Real photos of cups and interior | not supplied | Chloe |
 | Whether CloCoffee is on Toters or similar, for ordering links | unknown | Chloe |
+| **Do the three painted cups exist as real product?** Decides whether §4–5 stand or get rewritten | **unanswered — blocks the interaction spine** | Habib |
+| Five brand assets committed to `assets/brand/` at full resolution | not done — they exist only in a chat transcript | Habib |
+| Palette re-sampled from source files, replacing eyeballed hexes | not done | Habib |
 | Contents of the July website blueprint vs this plan | unreconciled | Habib |
 | AI-talent disclosure on the Verdict clip when posted | policy check | Habib |
 

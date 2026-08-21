@@ -14,9 +14,9 @@ comes from, the stack, a hard performance budget, and a three-week time-box.
 Read the **Open items** table at the end of that document first. Several of them — the menu and prices, the
 WhatsApp number, real photos of the shop — are blockers for Week 1, and none of them are code.
 
-One item outranks the rest: **it is not established that the three painted cups exist.** The brand assets
-supplied so far show a plain tumbler and a cream/espresso/bloom identity, with no painted cup anywhere. The
-site plan's creative spine assumes three of them. Until that is answered, sections 3–5 of the plan are drafts.
+Source media lives in [`assets/`](assets/) — two videos, five identity stills, three per-cup pour clips and
+their posters. The three painted cups are confirmed real; the palette in `docs/brand.md` is sampled from those
+files, not estimated.
 
 ## Intended stack
 
@@ -26,6 +26,7 @@ Supabase for menu data. Video and frame sequences on Cloudflare R2, never in the
 ## Ground rules carried into the build
 
 - Higgsfield generates pixels, not components. The interactive layer is code.
+- Colour comes from `docs/brand.md`, which is sampled from the committed assets. Never re-pick by eye.
 - Spend credits only on what a camera cannot do. Shoot the cups and the interior for real.
 - LCP under 2.5 s on a mid-range Android over 4G; first-load JS under 200 KB gzipped; Lighthouse mobile 90+.
 - Every motion effect degrades to a static poster under `prefers-reduced-motion`.

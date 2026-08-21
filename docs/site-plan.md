@@ -7,16 +7,17 @@
 Confidence tags used throughout: **[Certain]** verified or non-negotiable, **[Likely]** reasoned judgement,
 **[Guessing]** assumption that needs confirming before anyone spends money or time on it.
 
-> ### ⚠ Sections 3–5 are provisional
+> ### Assets received — creative spine confirmed
 >
-> Five brand assets have since been reviewed — see [`brand.md`](brand.md). **None of them shows a
-> painted cup.** The supplied identity is cream, espresso brown, and one blue-violet/blush bloom; the
-> only cup in the set is an undecorated tumbler carrying the wordmark.
+> Two videos and five identity stills are now committed under `assets/`, and the palette has been
+> sampled from them rather than eyeballed. See [`brand.md`](brand.md).
 >
-> The "three cups, three worlds" concept below therefore rests on an unconfirmed premise. Either the
-> painted cups exist and their photos simply weren't in that batch, or the identity has moved to
-> minimal single-cup and the interaction spine needs replacing. Until that is answered, treat the
-> creative concept, the section map, and the asset manifest as drafts. See `brand.md` §5.
+> **The three painted cups exist.** The reel shows all three — iris with lemons, cherry blossom, ditsy
+> florals — each on its own colour world, each with a pour. Sections 3–5 below stand as written.
+>
+> Two constraints came with the footage: both sources are **576×1024**, which is below 720p and caps the
+> desktop hero; and **deep violet on cream measures 3.61:1, which fails AA** — the earlier eyeballed
+> estimate of 4.52:1 was wrong. `brand.md` §4 and §7.
 
 ---
 
@@ -76,17 +77,19 @@ The cream-and-espresso base of the logo is the neutral stage. Each cup owns a co
 green and lemon yellow; blossom pink/magenta; ditsy multicolor — that takes over the screen when that cup is
 active. The bloom from the logo becomes the site's transition motif.
 
-- [Certain] The supplied assets are raster throughout. The wordmark lettering still needs vectorizing before
-  favicons, signage and print. Keep the bloom as an alpha PNG — and cut it off the opaque cream circle it
-  currently sits on, or it will not composite over dark sections.
-- [Certain] Espresso on cream measures ~11:1 in both directions — AAA, and unusually strong for a warm
-  palette. The site can run that pair everywhere with no accessibility tension.
-- [Certain] Blush fails on cream (~1.4:1) but is AAA on espresso (~8:1). The brass-gold trap from
-  thehowf.com applies to cream grounds and *inverts* on dark ones: blush display type on an espresso
-  section is available and looks deliberate. Mid violet fails on cream (~2.9:1); deep violet clears AA by
-  0.02, which is a rounding error rather than a margin.
-- Ratios above are computed from eyeballed hexes. Re-sample from source files before they reach code —
-  [`brand.md`](brand.md) §2 carries the values and the caveat.
+- [Certain] All supplied assets are raster. The wordmark lettering still needs vectorizing before
+  favicons, signage and print, and the bloom must be cut off its opaque cream circle before it can
+  composite over dark sections.
+- [Certain] Espresso `#392618` on cream `#EFE6D4` measures 11.57:1 — AAA, and unusually strong for a
+  warm palette. That pair carries the whole site.
+- [Certain] Every cup world takes espresso text except ditsy-deep `#8C7EA8` (3.87:1, large only).
+  Blossom is 7.06:1 and iris-light 6.68:1.
+- [Certain] The iris world is a steep vertical gradient. Cream ink is 13.95:1 at the top and 1.65:1 at
+  the bottom; espresso is the exact inverse. **No single text colour works across it** — pin text to one
+  band or give it a scrim. This is the likeliest place to ship an unreadable headline.
+- [Certain] Blush `#D5BEC0` fails on cream (1.42:1) and is AAA on espresso (8.16:1). The brass-gold trap
+  from thehowf.com applies to cream grounds and inverts on dark ones.
+- [Certain] Deep violet `#6F759A` on cream is 3.61:1 — **fails AA**. Not for links or small text.
 
 ---
 
@@ -129,10 +132,12 @@ Every one of these collapses to static posters and fades under `prefers-reduced-
 | Bloom, isolated | supplied, raster on opaque cream | exists | favicon, transition motif — needs cutting to transparency |
 | Plain tumbler mockup | supplied | exists | product shot, OG image, builder preview |
 | Storefront renders ×2 | supplied | exists, **presentation only** | brand deck; not shippable as "the shop" |
-| 3 product stills on color-matched backgrounds | Higgsfield, Jul | **unverified** — not among the five assets supplied | cup worlds, menu hero, OG images |
-| 3 pour videos + hero loop | Higgsfield, Jul | exists | scrubbed hero, tap-to-pour |
+| 3 cup posters on color-matched backgrounds | cut from the reel | **exists**, `assets/posters/` | cup worlds, menu hero, OG images |
+| 3 pour clips, cross-fades removed | cut from the reel | **exists**, `assets/video/cups/`, ~400 KB each | tap-to-pour |
+| Hero swirl loop | supplied | **exists**, `assets/video/source/hero-swirl.mp4` | scrubbed hero |
 | Cup cutouts | `remove_background` on existing stills | new, low cost | parallax, builder, transitions |
-| 4K upscales of the 3 stills, 21:9 outpaint of hero, 9:16 reframes of pours | `upscale`, `outpaint`, `reframe` | new, low cost | large screens, mobile hero |
+| Upscales of both source videos | `upscale_video` | **now required, not optional** — sources are 576×1024 | desktop hero, large screens |
+| 21:9 outpaint of hero | `outpaint_image` | new, low cost | desktop hero |
 | 360 turntable per cup | camera first; fallback 3 × 5 s orbit clips | new | drag-to-rotate |
 | Cinemagraphs: steam, matcha whisk, ice drop | image-to-video, 3 × 5 s | new | section backgrounds |
 | Verdict reviewer clip | 1–2 takes of the existing script | new | reel |
@@ -224,9 +229,9 @@ front of hotel and restaurant prospects.
 | Menu, prices, hours, address, handles, WhatsApp number | not supplied | Chloe |
 | Real photos of cups and interior | not supplied | Chloe |
 | Whether CloCoffee is on Toters or similar, for ordering links | unknown | Chloe |
-| **Do the three painted cups exist as real product?** Decides whether §4–5 stand or get rewritten | **unanswered — blocks the interaction spine** | Habib |
-| Five brand assets committed to `assets/brand/` at full resolution | not done — they exist only in a chat transcript | Habib |
-| Palette re-sampled from source files, replacing eyeballed hexes | not done | Habib |
+| Resolution path for the hero: upscale the 576×1024 sources, or reshoot the pours on a phone | **undecided — caps desktop quality** | Habib |
+| Bloom cut to transparency; wordmark lettering vectorized | not done — blocks transitions and favicon | Habib |
+| Remaining July generations (if any beyond these two videos) backed up off Higgsfield | unconfirmed | Habib |
 | Contents of the July website blueprint vs this plan | unreconciled | Habib |
 | AI-talent disclosure on the Verdict clip when posted | policy check | Habib |
 

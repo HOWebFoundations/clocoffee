@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* Palette sampled from the committed assets — docs/brand.md §3. Never re-pick by eye. */
+@theme {
+  --color-espresso: #392618;
+  --color-cream-ink: #eee0c6;
+  --color-cream: #efe6d4;
+  --color-paper: #fdfaee;
+  --color-violet-deep: #6f759a;
+  --color-violet-mid: #9b9db7;
+  --color-blush: #d5bec0;
+  --color-iris-deep: #001437;
+  --color-iris-light: #83b5ec;
+  --color-blossom: #e2a8b3;
+  --color-ditsy-mid: #b08ac2;
+  --color-ditsy-deep: #8c7ea8;
+
+  --font-sans: var(--font-latin), var(--font-arabic), ui-rounded, "Segoe UI", system-ui, sans-serif;
+
+  --ease-pour: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+:root {
+  --world: var(--color-cream);
+  --world-text: var(--color-espresso);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-cream);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+[dir="rtl"] body { letter-spacing: 0; }
+
+::selection { background: var(--color-violet-deep); color: var(--color-paper); }
+
+/* ————— liquid-fill buttons ————— */
+.btn-liquid {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s var(--ease-pour), transform 0.15s ease;
+}
+.btn-liquid::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 0%;
+  z-index: -1;
+  background: var(--liquid, var(--color-espresso));
+  border-radius: inherit;
+  transition: height 0.4s var(--ease-pour);
+}
+.btn-liquid:hover::before, .btn-liquid:focus-visible::before { height: 105%; }
+.btn-liquid:active { transform: scale(0.97); }
+
+/* ————— coffee-ring cursor (desktop, fine pointers only) ————— */
+@media (pointer: fine) {
+  .coffee-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 34px; height: 34px;
+    margin: -17px 0 0 -17px;
+    border: 2.5px solid var(--color-espresso);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s ease, transform 0.12s ease;
+    mix-blend-mode: multiply;
+  }
+  .coffee-ring::after {
+    content: "";
+    position: absolute; inset: 5px;
+    border: 1px solid color-mix(in srgb, var(--color-espresso) 45%, transparent);
+    border-radius: 50%;
+  }
+  .coffee-ring.is-active { opacity: 0.55; }
+}
+
+/* ————— bloom intro ————— */
+.bloom-intro {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center;
+  background: var(--color-cream);
+  animation: intro-fade 0.25s ease 0.85s forwards;
+}
+.bloom-intro img {
+  width: min(38vw, 220px); height: auto;
+  transform: scale(0.4) rotate(-12deg);
+  opacity: 0;
+  animation: bloom-in 0.6s var(--ease-pour) 0.05s forwards;
+}
+@keyframes bloom-in {
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes intro-fade {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ————— cup worlds ————— */
+.world-stage { transition: background-color 0.6s var(--ease-pour), color 0.6s var(--ease-pour); }
+
+/* ————— phone frame for Verdict reels ————— */
+.phone-frame {
+  border-radius: 2.2rem;
+  border: 6px solid var(--color-espresso);
+  box-shadow: 0 24px 60px -24px color-mix(in srgb, var(--color-espresso) 55%, transparent);
+  overflow: hidden;
+  background: var(--color-espresso);
+}
+
+/* ————— utility ————— */
+.scrim-b { background: linear-gradient(to top, rgb(0 0 0 / 0.45), transparent 60%); }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ————— reduced motion: everything collapses to static (site-plan §4) ————— */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .bloom-intro { display: none; }
+  .coffee-ring { display: none !important; }
+}

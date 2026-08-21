@@ -2,7 +2,15 @@
 
 Website for CloCoffee — a coffee shop known for three hand-painted can-shaped tumblers.
 
-**Status:** planning. No application code yet.
+**Status:** built, placeholder content. The full site exists and builds statically — three locales
+(EN / AR-RTL / FR), all eight sections from the plan. What blocks launch is content, not code: the real
+menu, prices, WhatsApp number, hours, address, and shop photos (see `lib/config.ts` and `lib/menu.ts`,
+every placeholder is marked).
+
+```
+npm install && npm run dev     # local dev
+npm run build                  # static production build
+```
 
 ## Where things stand
 
@@ -18,10 +26,12 @@ Source media lives in [`assets/`](assets/) — two videos, five identity stills,
 their posters. The three painted cups are confirmed real; the palette in `docs/brand.md` is sampled from those
 files, not estimated.
 
-## Intended stack
+## Stack as built
 
-Next.js App Router on Vercel, TypeScript, Tailwind, Motion + GSAP ScrollTrigger + Lenis for the scroll work,
-Supabase for menu data. Video and frame sequences on Cloudflare R2, never in the Vercel bundle.
+Next.js 15 App Router, TypeScript, Tailwind 4, GSAP ScrollTrigger + Lenis (both dynamically imported —
+first-load JS is 114 kB against the 200 kB budget). Menu data is a typed in-repo file (`lib/menu.ts`);
+moving it to Supabase later is a data-layer swap, not a redesign. Media currently ships from `/public`
+(5.3 MB); the plan's R2 move is a `MEDIA_BASE` change in `lib/config.ts`.
 
 ## Ground rules carried into the build
 

@@ -5,6 +5,8 @@ import { useEffect } from "react";
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // touch scrolling is native anyway — don't ship the chunk or run a rAF loop on phones
+    if (!window.matchMedia("(pointer: fine)").matches) return;
     let lenis: { raf: (t: number) => void; destroy: () => void } | undefined;
     let raf = 0;
     let cancelled = false;

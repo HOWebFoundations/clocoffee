@@ -23,7 +23,7 @@ export function OpenNow({ dict }: { dict: Dict }) {
       {state.open ? dict.shop.openNow : dict.shop.closedNow}
       {state.todayOpen && (
         <span className="font-medium opacity-80">
-          · {dict.shop.hoursToday} {state.todayOpen}–{state.todayClose}
+          · {dict.shop.hoursToday} <span dir="ltr">{state.todayOpen}–{state.todayClose}</span>
         </span>
       )}
     </span>

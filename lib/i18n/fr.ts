@@ -34,7 +34,7 @@ export const fr: Dict = {
     steps: { base: "Base", milk: "Lait", sweetness: "Sucre", cup: "Tasse" },
     bases: { espresso: "Espresso", latte: "Latte", iced: "Latte glacé", matcha: "Matcha" },
     milks: { whole: "Entier", oat: "Avoine", almond: "Amande", none: "Sans" },
-    sweet: { zero: "Non sucré", half: "Légèrement sucré", full: "Sucré" },
+    sweet: { zero: "Sans sucre", half: "Légèrement sucré", full: "Sucré" },
     cupPlain: "Verre classique",
     yourDrink: "Votre boisson",
     sendWhatsapp: "Envoyer la commande sur WhatsApp",

@@ -34,8 +34,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <CoffeeRingCursor />
       <Header dict={dict} locale={locale} />
       <main>
-        <HeroPour dict={dict} locale={locale} />
-        <CupWorlds dict={dict} locale={locale} />
+        <HeroPour dict={dict} />
+        <CupWorlds dict={dict} />
         <DrinkBuilder dict={dict} locale={locale} />
         <MenuGrid dict={dict} locale={locale} />
         <Verdict dict={dict} />

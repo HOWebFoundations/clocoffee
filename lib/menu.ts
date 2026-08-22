@@ -26,7 +26,7 @@ export const menu: MenuItem[] = [
     name: { en: "Cappuccino", ar: "كابتشينو", fr: "Cappuccino" } },
   { id: "latte", category: "coffee", usd: 4.5, popular: true,
     name: { en: "Latte", ar: "لاتيه", fr: "Latte" },
-    note: { en: "Served in a painted cup if you're staying", ar: "يُقدَّم في كوب مرسوم إذا كنت باقيًا", fr: "Servi dans une tasse peinte si vous restez" } },
+    note: { en: "Served in a painted cup if you're staying", ar: "يُقدَّم في كوب مرسوم لمن يشربه هنا", fr: "Servi dans une tasse peinte si vous restez" } },
   { id: "flat-white", category: "coffee", usd: 4.5,
     name: { en: "Flat white", ar: "فلات وايت", fr: "Flat white" } },
   { id: "turkish", category: "coffee", usd: 3,

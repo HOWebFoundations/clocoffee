@@ -23,14 +23,13 @@ export function MenuGrid({ dict, locale }: { dict: Dict; locale: Locale }) {
     <section id="menu" className="world-stage px-6 py-20 sm:py-28" style={{ backgroundColor: tint }}>
       <div className="mx-auto max-w-5xl">
         <h2 className="text-3xl font-extrabold sm:text-5xl">{dict.menu.heading}</h2>
-        <p className="mt-2 text-espresso/70">{dict.menu.sub}</p>
+        <p className="mt-2 text-espresso/75">{dict.menu.sub}</p>
 
-        <div role="tablist" className="mt-8 flex flex-wrap gap-2">
+        <div role="group" aria-label={dict.menu.heading} className="mt-8 flex flex-wrap gap-2">
           {cats.map((c) => (
             <button
               key={c}
-              role="tab"
-              aria-selected={filter === c}
+              aria-pressed={filter === c}
               onClick={() => setFilter(c)}
               className={`rounded-full border-2 px-4 py-2 text-sm font-bold transition-colors ${
                 filter === c ? "border-espresso bg-espresso text-cream-ink" : "border-espresso/30 hover:border-espresso"
@@ -45,7 +44,7 @@ export function MenuGrid({ dict, locale }: { dict: Dict; locale: Locale }) {
           {items.map((m) => (
             <li key={m.id}>
               <article
-                onPointerEnter={() => setTint(tints[m.category])}
+                onPointerEnter={(e) => { if (e.pointerType === "mouse") setTint(tints[m.category]); }}
                 className="group flex items-baseline justify-between gap-4 rounded-2xl bg-paper/80 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(57,38,24,0.35)]"
               >
                 <div>
@@ -53,11 +52,11 @@ export function MenuGrid({ dict, locale }: { dict: Dict; locale: Locale }) {
                     {m.name[locale]}
                     {m.popular && <span className="ms-2 align-middle text-xs">✿</span>}
                   </h3>
-                  {m.note && <p className="mt-1 text-sm text-espresso/60">{m.note[locale]}</p>}
+                  {m.note && <p className="mt-1 text-sm text-espresso/70">{m.note[locale]}</p>}
                 </div>
                 <div className="shrink-0 text-end">
                   <span className="block font-extrabold">{priceUsd(m.usd, locale)}</span>
-                  <span className="block text-xs text-espresso/55">{priceLbp(m.usd, locale)}</span>
+                  <span className="block text-xs text-espresso/70">{priceLbp(m.usd, locale)}</span>
                 </div>
               </article>
             </li>

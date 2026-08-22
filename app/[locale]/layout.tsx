@@ -6,8 +6,10 @@ import { getDict } from "@/lib/i18n";
 import "../globals.css";
 
 const latin = Nunito({ subsets: ["latin", "latin-ext"], variable: "--font-latin", display: "swap" });
+// preload:false — otherwise all three Arabic weights (~108KB) are preloaded on
+// the en/fr pages too; /ar pays a swap flash instead, which display:"swap" handles.
 const arabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"], weight: ["400", "500", "700"], variable: "--font-arabic", display: "swap",
+  subsets: ["arabic"], weight: ["400", "500", "700"], variable: "--font-arabic", display: "swap", preload: false,
 });
 
 export function generateStaticParams() {

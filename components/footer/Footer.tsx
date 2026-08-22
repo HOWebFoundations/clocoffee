@@ -1,4 +1,4 @@
-import { shop } from "@/lib/config";
+import { media, shop } from "@/lib/config";
 import type { Dict } from "@/lib/i18n";
 import { Wordmark } from "../ui/Wordmark";
 
@@ -22,12 +22,12 @@ export function Footer({ dict }: { dict: Dict }) {
           {tiles.map((t) => (
             <a key={t} href={ig} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden rounded-lg">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={t} alt={`@${shop.instagram}`} loading="lazy"
+              <img src={media(t)} alt={`@${shop.instagram}`} loading="lazy"
                    className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105" />
             </a>
           ))}
         </div>
-        <div className="mt-10 flex flex-col items-center gap-3 text-sm text-cream-ink/70">
+        <div className="mt-10 flex flex-col items-center gap-3 text-sm text-cream-ink/75">
           <Wordmark className="text-2xl text-cream-ink" bloomSize="1.1em" />
           <a href={ig} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
             @{shop.instagram}

@@ -7,6 +7,7 @@
   --color-cream: #efe6d4;
   --color-paper: #fdfaee;
   --color-violet-deep: #6f759a;
+  --color-violet-ink: #4e5474; /* hover-fill under cream-ink text: 5.67:1 (violet-deep only reaches 3.44) */
   --color-violet-mid: #9b9db7;
   --color-blush: #d5bec0;
   --color-iris-deep: #001437;
@@ -39,6 +40,8 @@ body {
 }
 
 [dir="rtl"] body { letter-spacing: 0; }
+/* Arabic is a connected script — tracking utilities must not stretch it */
+[dir="rtl"] :is(.tracking-wide, .tracking-widest) { letter-spacing: 0; }
 
 ::selection { background: var(--color-violet-deep); color: var(--color-paper); }
 
@@ -108,6 +111,14 @@ body {
 
 /* ————— cup worlds ————— */
 .world-stage { transition: background-color 0.6s var(--ease-pour), color 0.6s var(--ease-pour); }
+/* pinned mode is opt-in via data-pinned, set only when gsap's matchMedia is live;
+   the base carousel layout stays intact for reduced motion, failed JS, and breakpoint churn */
+[data-pinned] .worlds-track {
+  width: 300%;
+  overflow: visible;
+  scroll-snap-type: none;
+}
+[data-pinned] .worlds-track > article { width: calc(100% / 3); }
 
 /* ————— phone frame for Verdict reels ————— */
 .phone-frame {

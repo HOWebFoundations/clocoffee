@@ -24,7 +24,7 @@ export function Header({ dict, locale }: { dict: Dict; locale: Locale }) {
           </a>
         ))}
       </nav>
-      <div className="flex items-center gap-2" aria-label={dict.a11y.langSwitch}>
+      <nav className="flex items-center gap-2" aria-label={dict.a11y.langSwitch}>
         {locales.map((l) => (
           <Link
             key={l}
@@ -32,13 +32,13 @@ export function Header({ dict, locale }: { dict: Dict; locale: Locale }) {
             hrefLang={l}
             aria-current={l === locale ? "page" : undefined}
             className={`rounded-full px-2.5 py-1 text-xs font-bold transition-colors ${
-              l === locale ? "bg-espresso text-cream-ink" : "text-espresso/60 hover:text-espresso"
+              l === locale ? "bg-espresso text-cream-ink" : "text-espresso/70 hover:text-espresso"
             }`}
           >
             {localeNames[l]}
           </Link>
         ))}
-      </div>
+      </nav>
     </header>
   );
 }

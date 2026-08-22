@@ -7,7 +7,7 @@ export function Wordmark({ className = "", bloomSize = "1em" }: { className?: st
       <span>cl</span>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/media/bloom.png"
+        src="/media/bloom-sm.webp"
         alt="o"
         style={{ width: bloomSize, height: bloomSize, transform: "translateY(0.12em)" }}
         className="mx-[0.02em] inline-block object-contain"

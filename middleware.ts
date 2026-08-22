@@ -3,14 +3,22 @@ import { NextRequest, NextResponse } from "next/server";
 const locales = ["en", "ar", "fr"];
 const defaultLocale = "en";
 
-/** Pick the best locale from Accept-Language; en/ar/fr only. */
+/** Pick the best supported locale from Accept-Language, honouring q-values. */
 function negotiate(req: NextRequest): string {
   const header = req.headers.get("accept-language") ?? "";
+  let best = defaultLocale, bestQ = 0;
   for (const part of header.split(",")) {
-    const code = part.split(";")[0].trim().slice(0, 2).toLowerCase();
-    if (locales.includes(code)) return code;
+    const [range, ...params] = part.trim().split(";");
+    const code = range.trim().slice(0, 2).toLowerCase();
+    if (!locales.includes(code)) continue;
+    let q = 1;
+    for (const prm of params) {
+      const m = prm.trim().match(/^q=([0-9.]+)$/i);
+      if (m) q = parseFloat(m[1]);
+    }
+    if (q > bestQ) { bestQ = q; best = code; }
   }
-  return defaultLocale;
+  return best;
 }
 
 export function middleware(req: NextRequest) {

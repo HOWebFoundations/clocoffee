@@ -6,6 +6,9 @@
 
 export const MEDIA_BASE = ""; // set to the R2 public URL before launch, e.g. "https://media.clocoffee.com"
 
+/** Every media path in components goes through this so the R2 move is one constant. */
+export const media = (path: string) => `${MEDIA_BASE}${path}`;
+
 export const shop = {
   name: "clocoffee",
   /** PLACEHOLDER — real WhatsApp order number, international format, digits only */
@@ -55,9 +58,9 @@ export const cups = [
   },
   {
     id: "ditsy",
-    world: { deep: "#8C7EA8", light: "#B08AC2", tint: "#9E86B5" },
-    /** ditsy-deep is 3.87:1 with espresso — large text only (brand.md §4) */
-    textOnWorld: "light" as const,
+    /** tint lightened to #B695C8 so espresso text clears AA (5.55:1) — brand.md §4 */
+    world: { deep: "#8C7EA8", light: "#B08AC2", tint: "#B695C8" },
+    textOnWorld: "dark" as const,
     video: "/media/video/ditsy.mp4",
     poster: "/media/posters/ditsy",
   },

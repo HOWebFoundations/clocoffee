@@ -13,6 +13,9 @@ export function BloomIntro({ skipLabel }: { skipLabel: string }) {
       localStorage.setItem("clo-intro-seen", "1");
     } catch { /* private mode: show it, harmless */ }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // on a slow device hydration can land seconds after first paint — covering
+    // already-visible content with an intro at that point is pure annoyance
+    if (performance.now() > 2500) return;
     setShow(true);
     const t = setTimeout(() => setGone(true), 1300);
     return () => clearTimeout(t);
@@ -22,11 +25,11 @@ export function BloomIntro({ skipLabel }: { skipLabel: string }) {
   return (
     <div className="bloom-intro" role="presentation" onClick={() => setGone(true)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/media/bloom.png" alt="" />
+      <img src="/media/bloom-md.webp" alt="" />
       <button
         type="button"
         onClick={() => setGone(true)}
-        className="absolute bottom-8 text-sm text-espresso/60 underline underline-offset-4"
+        className="absolute bottom-8 text-sm text-espresso/70 underline underline-offset-4"
       >
         {skipLabel}
       </button>

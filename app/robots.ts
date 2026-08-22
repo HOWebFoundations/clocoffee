@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
+import { BASE_URL } from "@/lib/routes";
 
 export default function robots(): MetadataRoute.Robots {
-  return { rules: { userAgent: "*", allow: "/" }, sitemap: "https://clocoffee.com/sitemap.xml" };
+  return { rules: { userAgent: "*", allow: "/" }, sitemap: `${BASE_URL}/sitemap.xml` };
 }

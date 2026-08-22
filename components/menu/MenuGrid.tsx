@@ -20,9 +20,9 @@ export function MenuGrid({ dict, locale }: { dict: Dict; locale: Locale }) {
   const cats: (Category | "all")[] = ["all", "coffee", "iced", "matcha", "sweets"];
 
   return (
-    <section id="menu" className="world-stage px-6 py-20 sm:py-28" style={{ backgroundColor: tint }}>
+    <section id="menu" className="world-stage px-6 pb-20 pt-28 sm:pb-28 sm:pt-32" style={{ backgroundColor: tint }}>
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-3xl font-extrabold sm:text-5xl">{dict.menu.heading}</h2>
+        <h1 className="text-3xl font-extrabold sm:text-5xl">{dict.menu.heading}</h1>
         <p className="mt-2 text-espresso/75">{dict.menu.sub}</p>
 
         <div role="group" aria-label={dict.menu.heading} className="mt-8 flex flex-wrap gap-2">

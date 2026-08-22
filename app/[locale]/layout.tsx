@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import { Nunito, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, rtlLocales, type Locale } from "@/lib/config";
+import { BASE_URL } from "@/lib/routes";
 import { getDict } from "@/lib/i18n";
+import { shopJsonLd } from "@/lib/schema";
+import { BloomIntro } from "@/components/intro/BloomIntro";
+import { Header } from "@/components/ui/Header";
+import { CoffeeRingCursor } from "@/components/ui/CoffeeRingCursor";
+import { OrderBar } from "@/components/ui/OrderBar";
+import { Footer } from "@/components/footer/Footer";
 import "../globals.css";
 
 const latin = Nunito({ subsets: ["latin", "latin-ext"], variable: "--font-latin", display: "swap" });
@@ -20,28 +27,37 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const dict = getDict(locale as Locale);
   return {
-    metadataBase: new URL("https://clocoffee.com"), // PLACEHOLDER domain (site-plan §9)
-    title: dict.meta.title,
+    metadataBase: new URL(BASE_URL),
+    title: { default: dict.meta.title, template: `%s · clocoffee` },
     description: dict.meta.description,
     icons: { icon: "/media/icon.png", apple: "/media/apple-icon.png" },
-    openGraph: {
-      title: dict.meta.title,
-      description: dict.meta.description,
-      images: ["/media/posters/hero.webp"],
-    },
   };
 }
 
 export default async function LocaleLayout({
   children, params,
 }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  if (!locales.includes(locale as Locale)) notFound();
-  const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
+  const { locale: raw } = await params;
+  if (!locales.includes(raw as Locale)) notFound();
+  const locale = raw as Locale;
+  const dir = rtlLocales.includes(locale) ? "rtl" : "ltr";
+  const dict = getDict(locale);
   return (
     <html lang={locale} dir={dir} className={`${latin.variable} ${arabic.variable}`}>
       <body className={locale === "ar" ? "[font-family:var(--font-arabic),var(--font-latin),sans-serif]" : undefined}>
-        {children}
+        {/* Organisation-level schema rides on every page; page-specific schema
+            (Menu, breadcrumbs) is added by the individual routes. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd(locale, BASE_URL)) }}
+        />
+        <BloomIntro skipLabel={dict.a11y.skipIntro} />
+        <CoffeeRingCursor />
+        <Header dict={dict} locale={locale} />
+        {/* pb-24 clears the mobile order bar */}
+        <main className="pb-24 md:pb-0">{children}</main>
+        <Footer dict={dict} locale={locale} />
+        <OrderBar dict={dict} />
       </body>
     </html>
   );

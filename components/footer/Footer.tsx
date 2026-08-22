@@ -1,4 +1,6 @@
-import { media, shop } from "@/lib/config";
+import Link from "next/link";
+import { media, shop, type Locale } from "@/lib/config";
+import { navRoutes, path } from "@/lib/routes";
 import type { Dict } from "@/lib/i18n";
 import { Wordmark } from "../ui/Wordmark";
 
@@ -12,7 +14,7 @@ const tiles = [
   "/media/posters/hero.webp",
 ];
 
-export function Footer({ dict }: { dict: Dict }) {
+export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
   const ig = `https://instagram.com/${shop.instagram}`;
   return (
     <footer className="bg-espresso px-6 pb-10 pt-16 text-cream-ink">
@@ -27,7 +29,14 @@ export function Footer({ dict }: { dict: Dict }) {
             </a>
           ))}
         </div>
-        <div className="mt-10 flex flex-col items-center gap-3 text-sm text-cream-ink/75">
+        <nav aria-label={dict.footer.follow} className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold">
+          {navRoutes.map((r) => (
+            <Link key={r} href={path(locale, r)} className="text-cream-ink/80 underline-offset-4 hover:underline">
+              {r === "cups" ? dict.nav.cups : r === "build" ? dict.nav.builder : r === "menu" ? dict.nav.menu : r === "verdict" ? dict.nav.verdict : dict.nav.visit}
+            </Link>
+          ))}
+        </nav>
+        <div className="mt-8 flex flex-col items-center gap-3 text-sm text-cream-ink/75">
           <Wordmark className="text-2xl text-cream-ink" bloomSize="1.1em" />
           <a href={ig} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
             @{shop.instagram}

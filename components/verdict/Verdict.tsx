@@ -9,9 +9,9 @@ import { Reel } from "./Reel";
  */
 export function Verdict({ dict }: { dict: Dict }) {
   return (
-    <section id="verdict" className="bg-espresso px-6 py-20 text-cream-ink sm:py-28">
+    <section id="verdict" className="bg-espresso px-6 pb-20 pt-28 text-cream-ink sm:pb-28 sm:pt-32">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-3xl font-extrabold sm:text-5xl">{dict.verdict.heading}</h2>
+        <h1 className="text-3xl font-extrabold sm:text-5xl">{dict.verdict.heading}</h1>
         {/* blush display type is AAA on espresso — brand.md §4 */}
         <p className="mt-2 text-lg font-semibold text-blush">{dict.verdict.sub}</p>
         <p className="mt-1 text-sm text-cream-ink/70">{dict.verdict.placeholder}</p>

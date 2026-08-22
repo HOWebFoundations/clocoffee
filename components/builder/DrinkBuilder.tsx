@@ -87,10 +87,10 @@ export function DrinkBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
   };
 
   return (
-    <section id="builder" className="bg-paper px-6 py-20 sm:py-28">
+    <section id="builder" className="bg-paper px-6 pb-20 pt-28 sm:pb-28 sm:pt-32">
       <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
         <div>
-          <h2 className="text-3xl font-extrabold sm:text-5xl">{dict.builder.heading}</h2>
+          <h1 className="text-3xl font-extrabold sm:text-5xl">{dict.builder.heading}</h1>
           <p className="mt-2 text-espresso/70">{dict.builder.sub}</p>
 
           <fieldset className="mt-8">

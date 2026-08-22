@@ -5,7 +5,22 @@ export const en: Dict = {
     title: "clocoffee — three cups, three worlds",
     description: "A Beirut coffee shop with three hand-painted cups. Order on WhatsApp, build your drink, come say hi.",
   },
-  nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "Visit", order: "Order" },
+  pages: {
+    home: { title: "clocoffee — three cups, three worlds", description: "A Beirut coffee shop with three hand-painted cups. Order on WhatsApp, build your drink, come say hi." },
+    cups: { title: "The three cups", description: "Iris, Blossom and Ditsy — three tumblers painted by hand, each with its own world." },
+    build: { title: "Build your drink", description: "Pick a base, milk, sweetness and cup. Four taps and it goes straight to our WhatsApp." },
+    menu: { title: "Menu & prices", description: "Every coffee, iced drink, matcha and sweet we make, in USD and LBP." },
+    verdict: { title: "The Clo Coffee Verdict", description: "Every drink, reviewed. No mercy." },
+    visit: { title: "Visit us in Beirut", description: "Address, opening hours, directions and how to reach us." },
+  },
+  common: {
+    orderNow: "Order", backToCups: "All three cups", exploreMore: "Keep looking around",
+    seeAllCups: "Meet the cups", buildThisDrink: "Build this drink", viewMenu: "See the menu",
+    findUs: "Find the shop",
+    notFound: "This page went cold", notFoundBody: "The link you followed doesn't exist — but the coffee does.",
+    backHome: "Back to the shop",
+  },
+  nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "Visit", order: "Order" , verdict: "Verdict" },
   hero: {
     tagline: "Coffee, painted by hand.",
     sub: "Three hand-painted cups. One little shop in Beirut.",

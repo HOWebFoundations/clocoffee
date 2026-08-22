@@ -11,9 +11,9 @@ export function Shop({ dict, locale }: { dict: Dict; locale: Locale }) {
   const dirUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(shop.mapQuery)}`;
   const embed = `https://www.google.com/maps?q=${encodeURIComponent(shop.mapQuery)}&output=embed`;
   return (
-    <section id="visit" className="bg-cream px-6 py-20 sm:py-28">
+    <section id="visit" className="bg-cream px-6 pb-20 pt-28 sm:pb-28 sm:pt-32">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-3xl font-extrabold sm:text-5xl">{dict.shop.heading}</h2>
+        <h1 className="text-3xl font-extrabold sm:text-5xl">{dict.shop.heading}</h1>
         <p className="mt-2 text-espresso/75">{dict.shop.sub}</p>
         <div className="mt-4"><OpenNow dict={dict} /></div>
 

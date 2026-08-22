@@ -9,7 +9,22 @@ export const fr: Dict = {
     title: "clocoffee — trois tasses, trois mondes",
     description: "Un café à Beyrouth aux trois tasses peintes à la main. Commandez sur WhatsApp, composez votre boisson, passez nous voir.",
   },
-  nav: { menu: "Menu", cups: "Les tasses", builder: "Composer", visit: "Visite", order: "Commander" },
+  pages: {
+    home: { title: "clocoffee — trois tasses, trois mondes", description: "Un café à Beyrouth aux trois tasses peintes à la main. Commandez sur WhatsApp, composez votre boisson, passez nous voir." },
+    cups: { title: "Les trois tasses", description: "Iris, Cerisier et Fleurettes — trois tasses peintes à la main, chacune avec son monde." },
+    build: { title: "Composez votre boisson", description: "Une base, un lait, un sucrage, une tasse. Quatre gestes et la commande part sur WhatsApp." },
+    menu: { title: "Menu et prix", description: "Tous nos cafés, boissons glacées, matchas et douceurs, en USD et en LBP." },
+    verdict: { title: "Le Verdict Clo Coffee", description: "Chaque boisson, passée en revue. Sans pitié." },
+    visit: { title: "Nous trouver à Beyrouth", description: "Adresse, horaires, itinéraire et comment nous joindre." },
+  },
+  common: {
+    orderNow: "Commander", backToCups: "Les trois tasses", exploreMore: "Continuez la visite",
+    seeAllCups: "Découvrir les tasses", buildThisDrink: "Composer cette boisson", viewMenu: "Voir le menu",
+    findUs: "Trouver le café",
+    notFound: "Cette page a refroidi", notFoundBody: "Le lien que vous avez suivi n'existe pas — le café, si.",
+    backHome: "Retour au café",
+  },
+  nav: { menu: "Menu", cups: "Les tasses", builder: "Composer", visit: "Visite", order: "Commander" , verdict: "Verdict" },
   hero: {
     tagline: "Le café, peint à la main.",
     sub: "Trois tasses peintes à la main. Une petite adresse à Beyrouth.",

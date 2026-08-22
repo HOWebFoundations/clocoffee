@@ -1,6 +1,15 @@
 export interface Dict {
   meta: { title: string; description: string };
-  nav: { menu: string; cups: string; builder: string; visit: string; order: string };
+  /** Per-route <title>/description and the on-page lede. */
+  pages: Record<"home" | "cups" | "build" | "menu" | "verdict" | "visit", {
+    title: string; description: string;
+  }>;
+  common: {
+    orderNow: string; backToCups: string; exploreMore: string;
+    seeAllCups: string; buildThisDrink: string; viewMenu: string; findUs: string;
+    notFound: string; notFoundBody: string; backHome: string;
+  };
+  nav: { menu: string; cups: string; builder: string; visit: string; order: string; verdict: string };
   hero: { tagline: string; sub: string; orderWhatsapp: string; seeMenu: string; scroll: string };
   worlds: {
     heading: string; sub: string; tapToPour: string; pouring: string;

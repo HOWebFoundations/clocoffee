@@ -59,6 +59,7 @@ export const en: Dict = {
     directions: "Get directions",
     whatsappUs: "WhatsApp us",
     photosSoon: "Real photos of the shop are coming — this corner is saved for them.",
+    frontAlt: "The clocoffee storefront: a cream facade, wide wood-framed windows and the bloom sign above the door",
     hoursHeading: "Hours",
     days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     closed: "Closed",

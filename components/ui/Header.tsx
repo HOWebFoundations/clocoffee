@@ -13,7 +13,7 @@ export function Header({ dict, locale }: { dict: Dict; locale: Locale }) {
     { href: "#visit", label: dict.nav.visit },
   ];
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-cream/75 px-5 py-3 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-cream/95 px-5 py-3 shadow-[0_1px_0_rgba(57,38,24,0.08)]">
       <a href="#top" aria-label={dict.meta.title}>
         <Wordmark className="text-xl" bloomSize="1.05em" />
       </a>

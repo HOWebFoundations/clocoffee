@@ -63,6 +63,7 @@ export const fr: Dict = {
     directions: "Itinéraire",
     whatsappUs: "Écrivez-nous sur WhatsApp",
     photosSoon: "Les vraies photos du café arrivent — ce coin leur est réservé.",
+    frontAlt: "La devanture clocoffee : façade crème, grandes vitrines encadrées de bois et l’enseigne à la fleur au-dessus de la porte",
     hoursHeading: "Horaires",
     days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
     closed: "Fermé",

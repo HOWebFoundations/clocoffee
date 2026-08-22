@@ -19,9 +19,16 @@ export function Shop({ dict, locale }: { dict: Dict; locale: Locale }) {
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
           <div>
-            <div className="grid aspect-[4/3] place-items-center rounded-2xl border-2 border-dashed border-espresso/25 bg-paper/60 p-8 text-center text-espresso/55">
-              <p className="max-w-xs text-sm leading-relaxed">{dict.shop.photosSoon}</p>
-            </div>
+            <picture>
+              <source srcSet="/media/shop-front.avif" type="image/avif" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/media/shop-front.webp"
+                alt={dict.shop.frontAlt}
+                loading="lazy"
+                className="aspect-square w-full rounded-2xl object-cover shadow-md"
+              />
+            </picture>
             <address className="mt-5 not-italic text-espresso/80">{shop.address[locale]}</address>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href={dirUrl} target="_blank" rel="noopener noreferrer"

@@ -157,7 +157,9 @@ a direction. But they cannot back the "the shop" section, which needs real inter
 directions. Shipping a render of a building that does not exist is the failure mode the plan was written
 to avoid.
 
-**Presentation only. Do not ship.**
+**Update (owner decision, 2026-08-22):** Habib confirmed the recessed-door image represents the shop
+and directed it into the "the shop" section (`public/media/shop-front.webp`). The projecting-sign
+variant stays presentation-only. Swap in a real photograph when one exists.
 
 ---
 

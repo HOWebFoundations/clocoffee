@@ -78,7 +78,6 @@ body {
     pointer-events: none;
     z-index: 9999;
     transition: opacity 0.2s ease, transform 0.12s ease;
-    mix-blend-mode: multiply;
   }
   .coffee-ring::after {
     content: "";

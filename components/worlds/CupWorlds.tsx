@@ -38,7 +38,7 @@ export function CupWorlds({ dict }: { dict: Dict }) {
             scrollTrigger: {
               trigger: section,
               pin: true,
-              scrub: 0.6,
+              scrub: 0.35,
               snap: 1 / (panels - 1),
               end: () => `+=${window.innerHeight * (panels - 1)}`,
               onUpdate: (self) => setActive(Math.round(self.progress * (panels - 1))),
@@ -99,7 +99,7 @@ export function CupWorlds({ dict }: { dict: Dict }) {
 }
 
 function CupPanel({ cup, dict }: { cup: (typeof cups)[number]; dict: Dict }) {
-  const [pouring, setPouring] = useState(false);
+  const [phase, setPhase] = useState<"idle" | "loading" | "playing">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
   const figRef = useRef<HTMLDivElement>(null);
   const info = dict.worlds.cups[cup.id as CupId];
@@ -123,13 +123,20 @@ function CupPanel({ cup, dict }: { cup: (typeof cups)[number]; dict: Dict }) {
     return () => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerleave", reset); };
   }, []);
 
+  // a slow network must not leave the button looking dead: bail back to idle
+  useEffect(() => {
+    if (phase !== "loading") return;
+    const t = setTimeout(() => setPhase("idle"), 12000);
+    return () => clearTimeout(t);
+  }, [phase]);
+
   const pour = () => {
     const v = videoRef.current;
     if (!v) return;
-    if (pouring) { v.pause(); v.currentTime = 0; setPouring(false); return; }
-    setPouring(true);
+    if (phase !== "idle") { v.pause(); v.currentTime = 0; setPhase("idle"); return; }
+    setPhase("loading");
     v.currentTime = 0;
-    v.play().catch(() => setPouring(false));
+    v.play().catch(() => setPhase("idle"));
   };
 
   return (
@@ -139,24 +146,31 @@ function CupPanel({ cup, dict }: { cup: (typeof cups)[number]; dict: Dict }) {
         <button
           type="button"
           onClick={pour}
-          aria-pressed={pouring}
-          className="group relative block w-full overflow-hidden rounded-[2rem] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)]"
+          aria-pressed={phase !== "idle"}
+          className="group relative block w-full overflow-hidden rounded-[2rem] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] active:scale-[0.98] transition-transform"
         >
-          <picture className={pouring ? "invisible" : ""}>
+          {/* poster stays until the video is genuinely rendering frames */}
+          <picture className={phase === "playing" ? "invisible" : ""}>
             <source srcSet={media(`${cup.poster}.avif`)} type="image/avif" />
             <img src={media(`${cup.poster}.webp`)} alt={info.name} loading="lazy" className="aspect-[9/16] w-full object-cover" />
           </picture>
           <video
             ref={videoRef}
-            src={media(cup.video)}
             muted
             playsInline
             preload="none"
-            onEnded={() => setPouring(false)}
-            className={`absolute inset-0 h-full w-full object-cover ${pouring ? "" : "invisible"}`}
-          />
-          <span className="absolute inset-x-0 bottom-0 scrim-b px-4 pb-4 pt-12 text-center text-sm font-bold text-white/95">
-            {pouring ? dict.worlds.pouring : dict.worlds.tapToPour}
+            poster={media(`${cup.poster}.webp`)}
+            onPlaying={() => setPhase("playing")}
+            onError={() => setPhase("idle")}
+            onEnded={() => setPhase("idle")}
+            className={`absolute inset-0 h-full w-full object-cover ${phase === "playing" ? "" : "invisible"}`}
+          >
+            {/* mp4 first for Safari; webm covers browsers without H.264 */}
+            <source src={media(cup.video)} type="video/mp4" />
+            <source src={media(cup.video.replace(".mp4", ".webm"))} type="video/webm" />
+          </video>
+          <span className={`absolute inset-x-0 bottom-0 scrim-b px-4 pb-4 pt-12 text-center text-sm font-bold text-white/95 ${phase === "loading" ? "animate-pulse" : ""}`}>
+            {phase === "idle" ? dict.worlds.tapToPour : dict.worlds.pouring}
           </span>
         </button>
       </div>

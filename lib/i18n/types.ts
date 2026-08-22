@@ -22,7 +22,7 @@ export interface Dict {
   verdict: { heading: string; sub: string; placeholder: string; soundOn: string };
   shop: {
     heading: string; sub: string; openNow: string; closedNow: string; hoursToday: string;
-    directions: string; whatsappUs: string; photosSoon: string; hoursHeading: string;
+    directions: string; whatsappUs: string; photosSoon: string; frontAlt: string; hoursHeading: string;
     days: [string, string, string, string, string, string, string];
     closed: string;
   };

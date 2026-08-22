@@ -47,7 +47,7 @@ export function HeroPour({ dict }: { dict: Dict }) {
     };
 
     const size = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = canvas.clientWidth * dpr;
       canvas.height = canvas.clientHeight * dpr;
       current = -1;
@@ -78,19 +78,19 @@ export function HeroPour({ dict }: { dict: Dict }) {
       });
     };
 
-    const load = (i: number) => {
-      if (frames[i]) return;
+    const load = (i: number, done?: () => void) => {
+      if (frames[i]) { done?.(); return; }
       const img = new Image();
       img.src = frameSrc(i);
       img.onload = () => {
         if (disposed) return;
         loaded++;
         if (loaded === 4) setReady(true);
-        current = -1;
-        onScroll();
+        // pre-decode off the tap path so drawImage never hitches on first paint
+        img.decode?.().catch(() => {}).finally(() => { current = -1; onScroll(); done?.(); });
       };
       // a broken frame must not poison the nearest-frame scan: retire it
-      img.onerror = () => { if (!disposed) frames[i] = undefined; };
+      img.onerror = () => { if (!disposed) frames[i] = undefined; done?.(); };
       frames[i] = img;
     };
 
@@ -101,11 +101,22 @@ export function HeroPour({ dict }: { dict: Dict }) {
     type NetInfo = { saveData?: boolean; effectiveType?: string };
     const conn = (navigator as Navigator & { connection?: NetInfo }).connection;
     const frugal = !!conn && (conn.saveData === true || /(^|\b)2g/.test(conn.effectiveType ?? ""));
+    // fill with bounded concurrency: 120 parallel fetches starve the pour
+    // videos and jank the scroll on 4G, so drip them 6 at a time
     let filled = false;
     const fill = () => {
       if (filled || frugal) return;
       filled = true;
-      for (let i = 0; i < FRAME_COUNT; i++) load(i);
+      let next = 0;
+      const pump = () => {
+        while (next < FRAME_COUNT && inflight < 6) {
+          if (frames[next]) { next++; continue; }
+          inflight++;
+          load(next++, () => { inflight--; pump(); });
+        }
+      };
+      let inflight = 0;
+      pump();
     };
 
     // scroll/resize listeners live only while the runway is visible
@@ -179,7 +190,7 @@ export function HeroPour({ dict }: { dict: Dict }) {
         </div>
 
         <div className="pointer-events-none absolute inset-x-0 top-[4.5rem] flex justify-center">
-          <span className="rounded-full bg-paper/70 px-4 py-1.5 text-sm font-semibold text-espresso/75 backdrop-blur motion-reduce:hidden">
+          <span className="rounded-full bg-paper/90 px-4 py-1.5 text-sm font-semibold text-espresso/75 motion-reduce:hidden">
             {dict.hero.scroll} ↓
           </span>
         </div>

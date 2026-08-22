@@ -5,7 +5,6 @@ import { shopJsonLd } from "@/lib/schema";
 import { BloomIntro } from "@/components/intro/BloomIntro";
 import { Header } from "@/components/ui/Header";
 import { CoffeeRingCursor } from "@/components/ui/CoffeeRingCursor";
-import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { HeroPour } from "@/components/hero/HeroPour";
 import { CupWorlds } from "@/components/worlds/CupWorlds";
 import { DrinkBuilder } from "@/components/builder/DrinkBuilder";
@@ -30,7 +29,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd(locale, BASE_URL)) }}
       />
       <BloomIntro skipLabel={dict.a11y.skipIntro} />
-      <SmoothScroll />
       <CoffeeRingCursor />
       <Header dict={dict} locale={locale} />
       <main>

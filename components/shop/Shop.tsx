@@ -40,6 +40,17 @@ export function Shop({ dict, locale }: { dict: Dict; locale: Locale }) {
                 {dict.shop.whatsappUs}
               </a>
             </div>
+            <h3 className="mt-8 text-sm font-bold uppercase tracking-widest text-espresso/70">{dict.shop.amenitiesHeading}</h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {(Object.keys(shop.amenities) as (keyof typeof shop.amenities)[])
+                .filter((k) => shop.amenities[k])
+                .map((k) => (
+                  <li key={k} className="rounded-full bg-paper px-3.5 py-1.5 text-sm font-semibold text-espresso/85">
+                    {dict.shop.amenities[k]}
+                  </li>
+                ))}
+            </ul>
+
             <h3 className="mt-8 text-sm font-bold uppercase tracking-widest text-espresso/70">{dict.shop.hoursHeading}</h3>
             <table className="mt-2 w-full max-w-xs text-sm">
               <tbody>

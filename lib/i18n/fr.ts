@@ -12,10 +12,10 @@ export const fr: Dict = {
   pages: {
     home: { title: "clocoffee — trois tasses, trois mondes", description: "Un café à Beyrouth aux trois tasses peintes à la main. Commandez sur WhatsApp, composez votre boisson, passez nous voir." },
     cups: { title: "Les trois tasses", description: "Iris, Cerisier et Fleurettes — trois tasses peintes à la main, chacune avec son monde." },
-    build: { title: "Composez votre boisson", description: "Une base, un lait, un sucrage, une tasse. Quatre gestes et la commande part sur WhatsApp." },
+    order: { title: "Composez votre boisson", description: "Une base, un lait, un sucrage, une tasse. Quatre gestes et la commande part sur WhatsApp." },
     menu: { title: "Menu et prix", description: "Tous nos cafés, boissons glacées, matchas et douceurs, en USD et en LBP." },
-    verdict: { title: "Le Verdict Clo Coffee", description: "Chaque boisson, passée en revue. Sans pitié." },
     visit: { title: "Nous trouver à Beyrouth", description: "Adresse, horaires, itinéraire et comment nous joindre." },
+    about: { title: "Notre histoire", description: "Qui peint les tasses, et pourquoi aucune ne se ressemble." },
   },
   common: {
     orderNow: "Commander", backToCups: "Les trois tasses", exploreMore: "Continuez la visite",
@@ -57,6 +57,20 @@ export const fr: Dict = {
     waIntro: "Bonjour clocoffee ! Je voudrais commander :",
     waBase: "Boisson", waMilk: "Lait", waSweet: "Sucre", waCup: "Tasse", waTotal: "Total",
   },
+  order: {
+    heading: "Commander", sub: "Composez vos boissons et envoyez toute la commande sur WhatsApp.",
+    fulfilment: "À emporter ou livraison", pickup: "À emporter", delivery: "Livraison",
+    when: "Quand", asap: "Dès que possible", inMin: "Dans {n} min",
+    yourOrder: "Votre commande", empty: "Rien pour l'instant.", addToOrder: "Ajouter", added: "Ajouté",
+    remove: "Retirer", qty: "Qté", subtotal: "Sous-total", deliveryFee: "Livraison", total: "Total",
+    name: "Votre nom", namePh: "Pour vous appeler",
+    address: "Adresse de livraison", addressPh: "Rue, immeuble, étage",
+    notes: "Autre chose ?", notesPh: "Très chaud, sans glace, déca…",
+    payment: "Paiement sur place", payCash: "Espèces", payWhish: "Whish", payOmt: "OMT", payCard: "Carte",
+    send: "Envoyer la commande sur WhatsApp", needName: "Ajoutez votre nom", needAddress: "Ajoutez une adresse",
+    addAnother: "Ajouter une autre boisson",
+    waPickup: "À emporter", waDelivery: "Livraison", waWhen: "Quand", waName: "Nom", waNotes: "Notes",
+  },
   menu: {
     heading: "Le menu",
     sub: "Prix en USD et en LBP. Espèces, Whish ou OMT.",
@@ -82,6 +96,18 @@ export const fr: Dict = {
     hoursHeading: "Horaires",
     days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
     closed: "Fermé",
+    amenitiesHeading: "Bon à savoir",
+    amenities: { wifi: "Wifi gratuit", laptops: "Adapté au télétravail", oatMilk: "Lait d'avoine et d'amande", outdoorSeating: "Terrasse", parking: "Parking à proximité", cardPayment: "Cartes acceptées" },
+  },
+  about: {
+    heading: "Chaque tasse est peinte à la main",
+    lede: "PLACEHOLDER — Chloé, remplace ceci par la vraie histoire.",
+    body: [
+      "PLACEHOLDER — comment clocoffee a commencé, et quand.",
+      "PLACEHOLDER — qui peint les tasses, combien de temps prend chacune, pourquoi à la main.",
+      "PLACEHOLDER — ce que tu veux qu'on ressente en entrant.",
+    ],
+    cta: "Venez les voir en vrai",
   },
   footer: { follow: "Suivez les tasses", rights: "Tous droits réservés.", madeBy: "Site par HOWF" },
   a11y: {

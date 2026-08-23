@@ -7,7 +7,7 @@ import type { Dict } from "@/lib/i18n";
 export function NextUp({ dict, locale, exclude }: { dict: Dict; locale: Locale; exclude: Route }) {
   const all: { route: Route; label: string }[] = [
     { route: "cups", label: dict.common.seeAllCups },
-    { route: "build", label: dict.common.buildThisDrink },
+    { route: "order", label: dict.order.heading },
     { route: "menu", label: dict.common.viewMenu },
     { route: "visit", label: dict.common.findUs },
   ];

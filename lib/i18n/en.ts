@@ -8,10 +8,10 @@ export const en: Dict = {
   pages: {
     home: { title: "clocoffee — three cups, three worlds", description: "A Beirut coffee shop with three hand-painted cups. Order on WhatsApp, build your drink, come say hi." },
     cups: { title: "The three cups", description: "Iris, Blossom and Ditsy — three tumblers painted by hand, each with its own world." },
-    build: { title: "Build your drink", description: "Pick a base, milk, sweetness and cup. Four taps and it goes straight to our WhatsApp." },
+    order: { title: "Build your drink", description: "Pick a base, milk, sweetness and cup. Four taps and it goes straight to our WhatsApp." },
     menu: { title: "Menu & prices", description: "Every coffee, iced drink, matcha and sweet we make, in USD and LBP." },
-    verdict: { title: "The Clo Coffee Verdict", description: "Every drink, reviewed. No mercy." },
     visit: { title: "Visit us in Beirut", description: "Address, opening hours, directions and how to reach us." },
+    about: { title: "Our story", description: "Who paints the cups, and why every one is different." },
   },
   common: {
     orderNow: "Order", backToCups: "All three cups", exploreMore: "Keep looking around",
@@ -53,6 +53,20 @@ export const en: Dict = {
     waIntro: "Hi clocoffee! I'd like to order:",
     waBase: "Drink", waMilk: "Milk", waSweet: "Sweetness", waCup: "Cup", waTotal: "Total",
   },
+  order: {
+    heading: "Order", sub: "Build your drinks and send the whole order to our WhatsApp.",
+    fulfilment: "Pickup or delivery", pickup: "Pickup", delivery: "Delivery",
+    when: "When", asap: "As soon as possible", inMin: "In {n} min",
+    yourOrder: "Your order", empty: "Nothing added yet.", addToOrder: "Add to order", added: "Added",
+    remove: "Remove", qty: "Qty", subtotal: "Subtotal", deliveryFee: "Delivery", total: "Total",
+    name: "Your name", namePh: "So we can call it out",
+    address: "Delivery address", addressPh: "Street, building, floor",
+    notes: "Anything else?", notesPh: "Extra hot, no ice, decaf…",
+    payment: "Pay on arrival", payCash: "Cash", payWhish: "Whish", payOmt: "OMT", payCard: "Card",
+    send: "Send order on WhatsApp", needName: "Add your name first", needAddress: "Add a delivery address",
+    addAnother: "Add another drink",
+    waPickup: "Pickup", waDelivery: "Delivery", waWhen: "When", waName: "Name", waNotes: "Notes",
+  },
   menu: {
     heading: "The menu",
     sub: "Prices in USD and LBP. Cash, Whish or OMT.",
@@ -78,6 +92,18 @@ export const en: Dict = {
     hoursHeading: "Hours",
     days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     closed: "Closed",
+    amenitiesHeading: "Good to know",
+    amenities: { wifi: "Free wifi", laptops: "Laptop friendly", oatMilk: "Oat & almond milk", outdoorSeating: "Outdoor seating", parking: "Parking nearby", cardPayment: "Cards accepted" },
+  },
+  about: {
+    heading: "Every cup is painted by hand",
+    lede: "PLACEHOLDER — Chloe, replace this with the real story.",
+    body: [
+      "PLACEHOLDER — how clocoffee started, and when. A line or two about opening the shop.",
+      "PLACEHOLDER — who paints the cups, how long one takes, why hand-painting instead of printing.",
+      "PLACEHOLDER — what you want people to feel when they walk in.",
+    ],
+    cta: "Come see them in person",
   },
   footer: { follow: "Follow the cups", rights: "All rights reserved.", madeBy: "Site by HOWF" },
   a11y: {

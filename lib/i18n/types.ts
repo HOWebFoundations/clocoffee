@@ -1,7 +1,7 @@
 export interface Dict {
   meta: { title: string; description: string };
   /** Per-route <title>/description and the on-page lede. */
-  pages: Record<"home" | "cups" | "build" | "menu" | "verdict" | "visit", {
+  pages: Record<"home" | "cups" | "order" | "menu" | "visit" | "about", {
     title: string; description: string;
   }>;
   common: {
@@ -24,6 +24,18 @@ export interface Dict {
     cupPlain: string; yourDrink: string; sendWhatsapp: string; saveImage: string;
     waIntro: string; waBase: string; waMilk: string; waSweet: string; waCup: string; waTotal: string;
   };
+  order: {
+    heading: string; sub: string;
+    fulfilment: string; pickup: string; delivery: string;
+    when: string; asap: string; inMin: string;
+    yourOrder: string; empty: string; addToOrder: string; added: string;
+    remove: string; qty: string; subtotal: string; deliveryFee: string; total: string;
+    name: string; namePh: string; address: string; addressPh: string;
+    notes: string; notesPh: string;
+    payment: string; payCash: string; payWhish: string; payOmt: string; payCard: string;
+    send: string; needName: string; needAddress: string; addAnother: string;
+    waPickup: string; waDelivery: string; waWhen: string; waName: string; waNotes: string;
+  };
   menu: {
     heading: string; sub: string; all: string;
     categories: Record<"coffee" | "iced" | "matcha" | "sweets", string>;
@@ -34,7 +46,10 @@ export interface Dict {
     directions: string; whatsappUs: string; photosSoon: string; frontAlt: string; hoursHeading: string;
     days: [string, string, string, string, string, string, string];
     closed: string;
+    amenitiesHeading: string;
+    amenities: Record<"wifi" | "laptops" | "oatMilk" | "outdoorSeating" | "parking" | "cardPayment", string>;
   };
+  about: { heading: string; lede: string; body: string[]; cta: string };
   footer: { follow: string; rights: string; madeBy: string };
   a11y: { skipIntro: string; playPour: string; pausePour: string; langSwitch: string; heroAlt: string };
 }

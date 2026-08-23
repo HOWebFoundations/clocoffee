@@ -2,12 +2,12 @@ import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/lib/config";
 import { getDict } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
-import { DrinkBuilder } from "@/components/builder/DrinkBuilder";
+import { OrderBuilder } from "@/components/order/OrderBuilder";
 import { NextUp } from "@/components/ui/NextUp";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return pageMeta(locale as Locale, "build", "build");
+  return pageMeta(locale as Locale, "order", "order");
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
@@ -17,8 +17,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const dict = getDict(locale);
   return (
     <>
-      <DrinkBuilder dict={dict} locale={locale} />
-      <NextUp dict={dict} locale={locale} exclude="build" />
+      <OrderBuilder dict={dict} locale={locale} />
+      <NextUp dict={dict} locale={locale} exclude="order" />
     </>
   );
 }

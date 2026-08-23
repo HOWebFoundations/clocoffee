@@ -60,7 +60,7 @@ export default async function CupPage({ params }: { params: Promise<{ locale: st
           <p className="mt-4 max-w-md text-lg leading-relaxed opacity-90">{info.story}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href={path(locale, "build")}
+              href={path(locale, "order")}
               className="rounded-full bg-espresso px-6 py-3.5 font-bold text-cream-ink"
               style={cup.textOnWorld === "light" ? { backgroundColor: "var(--color-cream-ink)", color: "var(--color-espresso)" } : undefined}
             >

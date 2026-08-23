@@ -62,7 +62,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div>
             <h2 className="text-2xl font-extrabold sm:text-3xl">{dict.builder.heading}</h2>
             <p className="mt-2 text-cream-ink/80">{dict.builder.sub}</p>
-            <Link href={path(locale, "build")} className="mt-5 inline-block rounded-full bg-blush px-6 py-3 font-bold text-espresso">
+            <Link href={path(locale, "order")} className="mt-5 inline-block rounded-full bg-blush px-6 py-3 font-bold text-espresso">
               {dict.common.buildThisDrink}
             </Link>
           </div>

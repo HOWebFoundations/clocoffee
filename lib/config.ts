@@ -30,6 +30,13 @@ export const shop = {
     { open: "07:30", close: "22:00" }, // Fri
     { open: "09:00", close: "22:00" }, // Sat
   ] as ({ open: string; close: string } | null)[],
+  /** PLACEHOLDER — delivery fee in USD, and the minimum order that unlocks delivery */
+  deliveryFee: 2,
+  deliveryMin: 8,
+  /** PLACEHOLDER — confirm each with Chloe; false values are simply not shown. */
+  amenities: { wifi: true, laptops: true, oatMilk: true, outdoorSeating: true, parking: false, cardPayment: true },
+  /** Payment methods shown on the order screen. */
+  payments: ["cash", "whish", "omt", "card"] as const,
   /** PLACEHOLDER — LBP per 1 USD; update when the rate moves */
   lbpPerUsd: 89500,
 } as const;

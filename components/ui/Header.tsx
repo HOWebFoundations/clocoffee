@@ -11,8 +11,8 @@ const localeNames: Record<Locale, string> = { en: "EN", ar: "ع", fr: "FR" };
 export function Header({ dict, locale }: { dict: Dict; locale: Locale }) {
   const pathname = usePathname() ?? "";
   const labels: Record<Route, string> = {
-    "": dict.nav.menu, cups: dict.nav.cups, build: dict.nav.builder,
-    menu: dict.nav.menu, verdict: dict.nav.verdict, visit: dict.nav.visit,
+    "": dict.nav.menu, cups: dict.nav.cups, order: dict.order.heading,
+    menu: dict.nav.menu, visit: dict.nav.visit, about: dict.pages.about.title,
   };
   // strip the locale segment so switching language keeps you on the same page
   const rest = pathname.split("/").slice(2).join("/");

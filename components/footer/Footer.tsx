@@ -32,7 +32,7 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
         <nav aria-label={dict.footer.follow} className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold">
           {navRoutes.map((r) => (
             <Link key={r} href={path(locale, r)} className="text-cream-ink/80 underline-offset-4 hover:underline">
-              {r === "cups" ? dict.nav.cups : r === "build" ? dict.nav.builder : r === "menu" ? dict.nav.menu : r === "verdict" ? dict.nav.verdict : dict.nav.visit}
+              {r === "cups" ? dict.nav.cups : r === "order" ? dict.order.heading : r === "menu" ? dict.nav.menu : r === "about" ? dict.pages.about.title : dict.nav.visit}
             </Link>
           ))}
         </nav>

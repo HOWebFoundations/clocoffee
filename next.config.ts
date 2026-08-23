@@ -24,6 +24,9 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       { source: "/", destination: "/en", permanent: false },
+      // /build was the drink builder before it became a full order system
+      { source: "/:locale(en|ar|fr)/build", destination: "/:locale/order", permanent: true },
+      { source: "/:locale(en|ar|fr)/verdict", destination: "/:locale", permanent: true },
     ];
   },
 };

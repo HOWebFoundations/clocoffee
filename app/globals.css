@@ -17,6 +17,7 @@
   --color-ditsy-deep: #8c7ea8;
 
   --font-sans: var(--font-latin), var(--font-arabic), ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-display-ar), Georgia, "Times New Roman", serif;
 
   --ease-pour: cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -45,47 +46,44 @@ body {
 
 ::selection { background: var(--color-violet-deep); color: var(--color-paper); }
 
-/* ————— liquid-fill buttons ————— */
-.btn-liquid {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  transition: color 0.35s var(--ease-pour), transform 0.15s ease;
+/* ————— gallery typography —————
+   Serif display, generous line-height, tighter tracking at large sizes. */
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
 }
-.btn-liquid::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 0%;
-  z-index: -1;
-  background: var(--liquid, var(--color-espresso));
-  border-radius: inherit;
-  transition: height 0.4s var(--ease-pour);
+h1 { font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 120; }
+h2, h3 { font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 48; }
+/* Amiri has no variable axes and sits small — give the Arabic display size back */
+[dir="rtl"] :is(h1, h2, h3, .display) {
+  font-variation-settings: normal;
+  letter-spacing: 0;
+  line-height: 1.5;
+  font-size: 1.08em;
 }
-.btn-liquid:hover::before, .btn-liquid:focus-visible::before { height: 105%; }
-.btn-liquid:active { transform: scale(0.97); }
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+[dir="rtl"] .eyebrow { letter-spacing: 0; }
 
-/* ————— coffee-ring cursor (desktop, fine pointers only) ————— */
-@media (pointer: fine) {
-  .coffee-ring {
-    position: fixed;
-    top: 0; left: 0;
-    width: 34px; height: 34px;
-    margin: -17px 0 0 -17px;
-    border: 2.5px solid var(--color-espresso);
-    border-radius: 50%;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: opacity 0.2s ease, transform 0.12s ease;
-  }
-  .coffee-ring::after {
-    content: "";
-    position: absolute; inset: 5px;
-    border: 1px solid color-mix(in srgb, var(--color-espresso) 45%, transparent);
-    border-radius: 50%;
-  }
-  .coffee-ring.is-active { opacity: 0.55; }
+/* ————— gallery image frame —————
+   Full-bleed on phones (the source is 576×1024, so native density there),
+   framed with margins on desktop where edge-to-edge would show the softness. */
+.plate { position: relative; overflow: hidden; background: var(--color-cream); }
+@media (min-width: 768px) {
+  .plate { border-radius: 1.5rem; box-shadow: 0 40px 90px -50px rgb(57 38 24 / 0.5); }
+}
+
+/* ————— calm reveal ————— */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(14px); }
+  .reveal.is-in { opacity: 1; transform: none; transition: opacity 0.8s ease, transform 0.8s var(--ease-pour); }
 }
 
 /* ————— bloom intro ————— */
@@ -110,14 +108,6 @@ body {
 
 /* ————— cup worlds ————— */
 .world-stage { transition: background-color 0.6s var(--ease-pour), color 0.6s var(--ease-pour); }
-/* pinned mode is opt-in via data-pinned, set only when gsap's matchMedia is live;
-   the base carousel layout stays intact for reduced motion, failed JS, and breakpoint churn */
-[data-pinned] .worlds-track {
-  width: 300%;
-  overflow: visible;
-  scroll-snap-type: none;
-}
-[data-pinned] .worlds-track > article { width: calc(100% / 3); }
 
 /* ————— phone frame for Verdict reels ————— */
 .phone-frame {
@@ -127,6 +117,21 @@ body {
   overflow: hidden;
   background: var(--color-espresso);
 }
+
+/* ————— buttons: quiet, no liquid fill ————— */
+.btn {
+  display: inline-block;
+  border-radius: 9999px;
+  padding: 0.9rem 1.75rem;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.btn-solid { background: var(--color-espresso); color: var(--color-cream-ink); }
+.btn-solid:hover, .btn-solid:focus-visible { background: var(--color-violet-ink); }
+.btn-ghost { border: 1.5px solid currentColor; }
+.btn-ghost:hover, .btn-ghost:focus-visible { background: currentColor; }
+.btn-ghost:hover > span, .btn-ghost:focus-visible > span { mix-blend-mode: difference; }
 
 /* ————— utility ————— */
 .scrim-b { background: linear-gradient(to top, rgb(0 0 0 / 0.45), transparent 60%); }
@@ -142,5 +147,4 @@ body {
     transition-duration: 0.01ms !important;
   }
   .bloom-intro { display: none; }
-  .coffee-ring { display: none !important; }
 }

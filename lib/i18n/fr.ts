@@ -24,7 +24,7 @@ export const fr: Dict = {
     notFound: "Cette page a refroidi", notFoundBody: "Le lien que vous avez suivi n'existe pas — le café, si.",
     backHome: "Retour au café",
   },
-  nav: { menu: "Menu", cups: "Les tasses", builder: "Composer", visit: "Le café", order: "Commander"  },
+  nav: { menu: "Menu", cups: "Les tasses", builder: "Composer", visit: "Le café", order: "Commander"  , open: "Index", close: "Fermer" },
   hero: {
     tagline: "Le café, peint à la main.",
     sub: "Trois tasses peintes à la main. Une petite adresse à Beyrouth.",

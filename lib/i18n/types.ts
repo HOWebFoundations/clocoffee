@@ -9,7 +9,7 @@ export interface Dict {
     seeAllCups: string; buildThisDrink: string; viewMenu: string; findUs: string;
     notFound: string; notFoundBody: string; backHome: string;
   };
-  nav: { menu: string; cups: string; builder: string; visit: string; order: string };
+  nav: { menu: string; cups: string; builder: string; visit: string; order: string; open: string; close: string };
   hero: { tagline: string; sub: string; orderWhatsapp: string; seeMenu: string; scroll: string };
   worlds: {
     heading: string; sub: string; tapToPour: string; pouring: string;

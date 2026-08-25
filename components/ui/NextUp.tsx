@@ -15,13 +15,13 @@ export function NextUp({ dict, locale, exclude }: { dict: Dict; locale: Locale; 
   return (
     <nav aria-label={dict.common.exploreMore} className="bg-cream px-6 py-14">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-espresso/70">{dict.common.exploreMore}</h2>
+        <h2 className="eyebrow text-espresso/60">{dict.common.exploreMore}</h2>
         <ul className="mt-4 grid gap-3 sm:grid-cols-3">
           {links.map((l) => (
             <li key={l.route}>
               <Link
                 href={path(locale, l.route)}
-                className="block rounded-2xl border-2 border-espresso/15 bg-paper px-5 py-4 font-bold transition-colors hover:border-espresso"
+                className="block rounded-2xl border border-espresso/15 bg-paper px-5 py-4 font-bold transition-colors hover:border-espresso"
               >
                 {l.label} <span aria-hidden="true" className="rtl:hidden">→</span><span aria-hidden="true" className="ltr:hidden">←</span>
               </Link>

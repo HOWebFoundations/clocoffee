@@ -20,7 +20,7 @@ export const en: Dict = {
     notFound: "This page went cold", notFoundBody: "The link you followed doesn't exist — but the coffee does.",
     backHome: "Back to the shop",
   },
-  nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "The café", order: "Order"  },
+  nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "The café", order: "Order"  , open: "Index", close: "Close" },
   hero: {
     tagline: "Coffee, painted by hand.",
     sub: "Three hand-painted cups. One little shop in Beirut.",

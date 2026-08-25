@@ -177,13 +177,13 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
             <a
               href={`/${locale}/cups`}
-              className="btn-liquid rounded-full bg-espresso px-7 py-3.5 font-bold text-cream-ink [--liquid:var(--color-violet-ink)]"
+              className="btn btn-solid font-bold "
             >
               {dict.common.seeAllCups}
             </a>
             <a
               href={`/${locale}/menu`}
-              className="btn-liquid rounded-full border-2 border-espresso px-7 py-3.5 font-bold text-espresso hover:text-cream-ink focus-visible:text-cream-ink [--liquid:var(--color-espresso)]"
+              className="btn btn-ghost font-bold text-espresso  "
             >
               {dict.hero.seeMenu}
             </a>

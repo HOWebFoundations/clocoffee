@@ -57,16 +57,16 @@ export function CupStage({ cup, dict, parallax = false, className = "" }: {
   };
 
   return (
-    <div ref={figRef} className={`relative mx-auto w-[min(64vw,300px)] transition-transform duration-200 ease-out ${className}`}>
+    <div ref={figRef} className={`relative w-full ${className}`}>
       <button
         type="button"
         onClick={pour}
         aria-pressed={phase !== "idle"}
-        className="group relative block w-full overflow-hidden rounded-[2rem] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] transition-transform active:scale-[0.98]"
+        className="plate group relative block w-full transition-transform active:scale-[0.99]"
       >
         <picture className={phase === "playing" ? "invisible" : ""}>
           <source srcSet={media(`${cup.poster}.avif`)} type="image/avif" />
-          <img src={media(`${cup.poster}.webp`)} alt={info.name} loading="lazy" className="aspect-[9/16] w-full object-cover" />
+          <img src={media(`${cup.poster}.webp`)} alt={info.name} loading="lazy" className="aspect-[4/5] w-full object-cover" />
         </picture>
         <video
           ref={videoRef}

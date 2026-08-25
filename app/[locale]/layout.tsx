@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Fraunces, Nunito, Amiri, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { notFound } from "next/navigation";
 import { locales, rtlLocales, type Locale } from "@/lib/config";
 import { BASE_URL } from "@/lib/routes";
@@ -7,12 +7,21 @@ import { getDict } from "@/lib/i18n";
 import { shopJsonLd } from "@/lib/schema";
 import { BloomIntro } from "@/components/intro/BloomIntro";
 import { Header } from "@/components/ui/Header";
-import { CoffeeRingCursor } from "@/components/ui/CoffeeRingCursor";
 import { OrderBar } from "@/components/ui/OrderBar";
 import { Footer } from "@/components/footer/Footer";
 import "../globals.css";
 
+// Gallery typography: a warm optical-size serif for display, the rounded sans
+// kept for body and UI because it echoes the wordmark's own lettering.
+const display = Fraunces({
+  subsets: ["latin"], variable: "--font-display", display: "swap",
+  axes: ["SOFT", "WONK", "opsz"],
+});
 const latin = Nunito({ subsets: ["latin", "latin-ext"], variable: "--font-latin", display: "swap" });
+// Classical Arabic serif so /ar gets the same gallery register rather than a sans fallback.
+const arabicDisplay = Amiri({
+  subsets: ["arabic"], weight: ["400", "700"], variable: "--font-display-ar", display: "swap", preload: false,
+});
 // preload:false — otherwise all three Arabic weights (~108KB) are preloaded on
 // the en/fr pages too; /ar pays a swap flash instead, which display:"swap" handles.
 const arabic = IBM_Plex_Sans_Arabic({
@@ -43,7 +52,7 @@ export default async function LocaleLayout({
   const dir = rtlLocales.includes(locale) ? "rtl" : "ltr";
   const dict = getDict(locale);
   return (
-    <html lang={locale} dir={dir} className={`${latin.variable} ${arabic.variable}`}>
+    <html lang={locale} dir={dir} className={`${display.variable} ${latin.variable} ${arabicDisplay.variable} ${arabic.variable}`}>
       <body className={locale === "ar" ? "[font-family:var(--font-arabic),var(--font-latin),sans-serif]" : undefined}>
         {/* Organisation-level schema rides on every page; page-specific schema
             (Menu, breadcrumbs) is added by the individual routes. */}
@@ -52,7 +61,6 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd(locale, BASE_URL)) }}
         />
         <BloomIntro skipLabel={dict.a11y.skipIntro} />
-        <CoffeeRingCursor />
         <Header dict={dict} locale={locale} />
         {/* pb-24 clears the mobile order bar */}
         <main className="pb-24 md:pb-0">{children}</main>

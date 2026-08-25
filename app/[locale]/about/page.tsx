@@ -22,14 +22,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <article className="bg-cream px-6 pb-20 pt-28 sm:pt-32">
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2 md:items-start">
           <div>
-            <h1 className="text-4xl font-extrabold leading-tight sm:text-6xl">{dict.about.heading}</h1>
+            <h1 className="text-4xl sm:text-6xl">{dict.about.heading}</h1>
             <p className="mt-4 text-lg text-espresso/75">{dict.about.lede}</p>
             <div className="mt-8 space-y-5 leading-relaxed text-espresso/85">
               {dict.about.body.map((para, i) => <p key={i}>{para}</p>)}
             </div>
             <Link
               href={path(locale, "cups")}
-              className="btn-liquid mt-10 inline-block rounded-full bg-espresso px-7 py-3.5 font-bold text-cream-ink [--liquid:var(--color-violet-ink)]"
+              className="btn btn-solid mt-10 inline-block font-bold "
             >
               {dict.about.cta}
             </Link>
@@ -42,7 +42,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   src={media(`/media/posters/${id}.webp`)}
                   alt=""
                   loading="lazy"
-                  className={`w-full rounded-2xl object-cover shadow-md ${i === 0 ? "aspect-[4/3]" : "aspect-square"}`}
+                  className={`w-full plate object-cover ${i === 0 ? "aspect-[4/3]" : "aspect-square"}`}
                 />
               </picture>
             ))}

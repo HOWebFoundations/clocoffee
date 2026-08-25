@@ -22,7 +22,7 @@ export function MenuGrid({ dict, locale }: { dict: Dict; locale: Locale }) {
   return (
     <section id="menu" className="world-stage px-6 pb-20 pt-28 sm:pb-28 sm:pt-32" style={{ backgroundColor: tint }}>
       <div className="mx-auto max-w-5xl">
-        <h1 className="text-3xl font-extrabold sm:text-5xl">{dict.menu.heading}</h1>
+        <h1 className="text-4xl sm:text-6xl">{dict.menu.heading}</h1>
         <p className="mt-2 text-espresso/75">{dict.menu.indicative}</p>
 
         <div role="group" aria-label={dict.menu.heading} className="mt-8 flex flex-wrap gap-2">
@@ -48,7 +48,7 @@ export function MenuGrid({ dict, locale }: { dict: Dict; locale: Locale }) {
                 className="group flex items-baseline justify-between gap-4 rounded-2xl bg-paper/80 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(57,38,24,0.35)]"
               >
                 <div>
-                  <h3 className="font-extrabold">
+                  <h3 className="font-bold">
                     {m.name[locale]}
                     {m.popular && <span className="ms-2 align-middle text-xs">✿</span>}
                   </h3>

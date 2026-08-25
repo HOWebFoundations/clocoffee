@@ -43,20 +43,20 @@ export default async function CupPage({ params }: { params: Promise<{ locale: st
 
   return (
     <article
-      className="flex min-h-svh flex-col justify-center px-6 pb-24 pt-28 sm:pt-32"
+      className="flex min-h-svh flex-col justify-center pb-24 pt-28 sm:pt-32"
       style={{
         backgroundColor: cup.world.tint,
         color: cup.textOnWorld === "dark" ? "var(--color-espresso)" : "var(--color-cream-ink)",
       }}
     >
-      <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-16">
         <CupStage cup={cup} dict={dict} />
-        <div>
+        <div className="px-6">
           <Link href={path(locale, "cups")} className="text-sm font-bold underline underline-offset-4 opacity-80">
             <span aria-hidden="true" className="rtl:hidden">←</span>
             <span aria-hidden="true" className="ltr:hidden">→</span> {dict.common.backToCups}
           </Link>
-          <h1 className="mt-4 text-4xl font-extrabold sm:text-6xl">{info.name}</h1>
+          <h1 className="mt-4 text-5xl sm:text-7xl">{info.name}</h1>
           <p className="mt-4 max-w-md text-lg leading-relaxed opacity-90">{info.story}</p>
           <p className="mt-6 max-w-md text-sm leading-relaxed opacity-75">{dict.status.glassesNote}</p>
           <div className="mt-8 flex flex-wrap gap-3">

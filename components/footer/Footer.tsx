@@ -19,7 +19,7 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
   return (
     <footer className="bg-espresso px-6 pb-10 pt-16 text-cream-ink">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-center text-xl font-extrabold">{dict.footer.follow}</h2>
+        <h2 className="text-center text-2xl">{dict.footer.follow}</h2>
         <div className="mt-6 grid grid-cols-3 gap-2 sm:grid-cols-6">
           {tiles.map((t) => (
             <a key={t} href={ig} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden rounded-lg">

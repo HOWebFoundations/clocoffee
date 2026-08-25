@@ -96,7 +96,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
   return (
     <section className="bg-paper px-6 pb-20 pt-28 sm:pb-28 sm:pt-32">
       <div className="mx-auto max-w-5xl">
-        <h1 className="text-3xl font-extrabold sm:text-5xl">{o.heading}</h1>
+        <h1 className="text-4xl sm:text-6xl">{o.heading}</h1>
         <p className="mt-2 text-espresso/75">{o.sub}</p>
         {/* there is no café: say so before anyone builds an order expecting coffee */}
         <p className="mt-5 rounded-2xl border-2 border-espresso/12 bg-cream px-5 py-4 text-sm leading-relaxed text-espresso/85">
@@ -107,7 +107,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
           {/* ——— build a drink ——— */}
           <div>
             <div className="md:sticky md:top-24">
-              <figure className="mx-auto w-full max-w-[16rem] overflow-hidden rounded-[1.75rem] shadow-[0_24px_60px_-28px_rgba(57,38,24,0.5)]">
+              <figure className="mx-auto w-full max-w-[16rem] overflow-hidden plate">
                 <picture key={poster}>
                   <source srcSet={media(`${poster}.avif`)} type="image/avif" />
                   <img src={media(`${poster}.webp`)} alt="" loading="lazy" className="aspect-[9/16] w-full object-cover" />
@@ -118,7 +118,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
 
           <div>
             <fieldset>
-              <legend className="mb-2 text-sm font-bold uppercase tracking-widest text-espresso/70">1 · {dict.builder.steps.base}</legend>
+              <legend className="mb-2 eyebrow text-espresso/60">1 · {dict.builder.steps.base}</legend>
               <div className="flex flex-wrap gap-2">
                 {(Object.keys(builderPricing.bases) as Base[]).map((b) => (
                   <Chip key={b} value={b} current={base} set={setBase} label={dict.builder.bases[b]} />
@@ -126,7 +126,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
               </div>
             </fieldset>
             <fieldset className="mt-6">
-              <legend className="mb-2 text-sm font-bold uppercase tracking-widest text-espresso/70">2 · {dict.builder.steps.milk}</legend>
+              <legend className="mb-2 eyebrow text-espresso/60">2 · {dict.builder.steps.milk}</legend>
               <div className="flex flex-wrap gap-2">
                 {(Object.keys(builderPricing.milks) as Milk[]).map((m) => (
                   <Chip key={m} value={m} current={milk} set={setMilk} label={dict.builder.milks[m]} />
@@ -134,7 +134,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
               </div>
             </fieldset>
             <fieldset className="mt-6">
-              <legend className="mb-2 text-sm font-bold uppercase tracking-widest text-espresso/70">3 · {dict.builder.steps.sweetness}</legend>
+              <legend className="mb-2 eyebrow text-espresso/60">3 · {dict.builder.steps.sweetness}</legend>
               <div className="flex flex-wrap gap-2">
                 {(["zero", "half", "full"] as Sweet[]).map((s) => (
                   <Chip key={s} value={s} current={sweet} set={setSweet} label={dict.builder.sweet[s]} />
@@ -145,7 +145,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
             <button
               type="button"
               onClick={add}
-              className="btn-liquid mt-8 w-full rounded-full bg-espresso py-4 font-bold text-cream-ink transition-transform active:scale-[0.98] [--liquid:var(--color-violet-ink)]"
+              className="btn mt-8 w-full rounded-full bg-espresso py-4 font-bold text-cream-ink transition-transform active:scale-[0.98]"
             >
               {justAdded ? `✓ ${o.added}` : `${o.addToOrder} · ${priceUsd(unitPrice({ base, milk }), locale)}`}
             </button>
@@ -154,7 +154,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
 
         {/* ——— the order ——— */}
         <div className="mt-16 rounded-3xl border-2 border-espresso/12 bg-cream p-6 sm:p-8">
-          <h2 className="text-2xl font-extrabold">{o.yourOrder}</h2>
+          <h2 className="text-3xl">{o.yourOrder}</h2>
 
           {lines.length === 0 ? (
             <p className="mt-3 text-espresso/70">{o.empty}</p>
@@ -180,7 +180,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-1.5 block text-sm font-bold uppercase tracking-widest text-espresso/70">{o.name}</span>
+              <span className="mb-1.5 block eyebrow text-espresso/60">{o.name}</span>
               <input
                 value={name} onChange={(e) => setName(e.target.value)} placeholder={o.namePh}
                 autoComplete="name"
@@ -188,7 +188,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
               />
             </label>
             <label className="block sm:col-span-2">
-              <span className="mb-1.5 block text-sm font-bold uppercase tracking-widest text-espresso/70">{o.notes}</span>
+              <span className="mb-1.5 block eyebrow text-espresso/60">{o.notes}</span>
               <input
                 value={notes} onChange={(e) => setNotes(e.target.value)} placeholder={o.notesPh}
                 className="w-full rounded-xl border-2 border-espresso/20 bg-paper px-4 py-3 outline-none focus:border-espresso"
@@ -217,10 +217,10 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
               if (blocked) { e.preventDefault(); return; }
               track("whatsapp_handoff", { source: "order", lines: lines.length, total });
             }}
-            className={`btn-liquid mt-6 block rounded-full py-4 text-center font-bold transition-transform ${
+            className={`btn mt-6 block rounded-full py-4 text-center font-bold transition-transform ${
               blocked
                 ? "cursor-not-allowed bg-espresso/25 text-espresso/50"
-                : "bg-espresso text-cream-ink active:scale-[0.99] [--liquid:var(--color-violet-ink)]"
+                : "bg-espresso text-cream-ink active:scale-[0.99]"
             }`}
           >
             {!lines.length ? o.empty : !name.trim() ? o.needName : dict.status.orderSend}

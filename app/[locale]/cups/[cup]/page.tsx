@@ -72,7 +72,7 @@ export default async function CupPage({ params }: { params: Promise<{ locale: st
             </Link>
           </div>
 
-          <ul className="mt-12 flex gap-4">
+          <ul className="mt-12 flex gap-4 px-0">
             {others.map((o) => (
               <li key={o.id}>
                 <Link href={path(locale, "cups", o.id)} className="flex items-center gap-3 text-sm font-bold">
@@ -86,6 +86,28 @@ export default async function CupPage({ params }: { params: Promise<{ locale: st
             ))}
           </ul>
         </div>
+      </div>
+
+      {/* the work up close, and the work in a room */}
+      <div className="mx-auto mt-16 grid max-w-6xl gap-6 px-6 md:grid-cols-2">
+        <picture>
+          <source srcSet={media(`/media/detail/${cup.id}.avif`)} type="image/avif" />
+          <img
+            src={media(`/media/detail/${cup.id}.webp`)}
+            alt={`${info.name} — detail`}
+            loading="lazy"
+            className="plate aspect-square w-full object-cover"
+          />
+        </picture>
+        <picture>
+          <source srcSet={media(`/media/gallery/${cup.id}.avif`)} type="image/avif" />
+          <img
+            src={media(`/media/gallery/${cup.id}.webp`)}
+            alt={info.name}
+            loading="lazy"
+            className="plate aspect-square w-full object-cover"
+          />
+        </picture>
       </div>
     </article>
   );

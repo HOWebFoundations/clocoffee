@@ -24,6 +24,9 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // the 576-wide frames are native density on phones and soft on desktop, so
+    // the scrub is a mobile experience; desktop gets the wide 4K still.
+    if (window.matchMedia("(min-width: 768px)").matches) return;
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
@@ -152,10 +155,13 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
   }, []);
 
   return (
-    <section ref={runway} id="top" className="relative h-[300vh] motion-reduce:h-auto">
-      <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden bg-cream motion-reduce:static">
+    <section ref={runway} id="top" className="relative h-[300vh] motion-reduce:h-auto md:h-auto">
+      <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden bg-cream motion-reduce:static md:static">
         {/* poster paints first — AVIF then WebP (site-plan §6) */}
-        <picture className={`absolute inset-0 transition-opacity duration-500 ${ready ? "opacity-0" : "opacity-100"}`}>
+        <picture className={`absolute inset-0 transition-opacity duration-500 md:opacity-100 ${ready ? "opacity-0" : "opacity-100"}`}>
+          {/* desktop: the 21:9 outpainted, 4K-upscaled hero; mobile: the vertical original */}
+          <source media="(min-width: 768px)" srcSet={media("/media/posters/hero-wide.avif")} type="image/avif" />
+          <source media="(min-width: 768px)" srcSet={media("/media/posters/hero-wide.webp")} type="image/webp" />
           <source srcSet={media("/media/posters/hero.avif")} type="image/avif" />
           <img
             src={media("/media/posters/hero.webp")}
@@ -164,11 +170,11 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
             className="h-full w-full object-cover"
           />
         </picture>
-        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full motion-reduce:hidden" aria-hidden="true" />
+        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full motion-reduce:hidden md:hidden" aria-hidden="true" />
         {/* cream scrim: the filled cup is dark amber where the headline lands */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[46svh] bg-gradient-to-t from-cream via-cream/80 to-transparent" aria-hidden="true" />
 
-        <div ref={headlineRef} className="absolute inset-x-0 bottom-[14svh] px-6 text-center">
+        <div ref={headlineRef} className="absolute inset-x-0 bottom-[14svh] px-6 text-center md:bottom-[7svh]">
           <h1 className="mx-auto max-w-3xl text-4xl font-extrabold leading-tight text-espresso sm:text-6xl">
             {dict.hero.tagline}
           </h1>

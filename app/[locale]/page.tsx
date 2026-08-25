@@ -24,6 +24,22 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Cup teasers — the home page sells the idea, the cup pages tell it */}
       <section className="scroll-mt-20 bg-cream px-6 py-20 sm:py-28">
         <div className="mx-auto max-w-5xl">
+          {/* the living monogram: Chloe's bloom, breathing. Falls back to the
+              static flower under reduced motion. */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={media("/media/bloom-md.webp")}
+            aria-hidden="true"
+            className="mb-10 h-28 w-28 rounded-full object-cover motion-reduce:hidden"
+          >
+            <source src={media("/media/video/bloom.mp4")} type="video/mp4" />
+            <source src={media("/media/video/bloom.webm")} type="video/webm" />
+          </video>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={media("/media/bloom-md.webp")} alt="" aria-hidden="true" className="mb-10 hidden h-28 w-28 object-contain motion-reduce:block" />
           <h2 className="text-4xl sm:text-6xl">{dict.worlds.heading}</h2>
           <p className="mt-2 text-espresso/75">{dict.worlds.sub}</p>
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">

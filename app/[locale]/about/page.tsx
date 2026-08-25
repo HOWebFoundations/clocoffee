@@ -35,14 +35,23 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {["blossom", "iris", "ditsy"].map((id, i) => (
-              <picture key={id} className={i === 0 ? "col-span-2" : ""}>
+            <picture className="col-span-2">
+              <source srcSet={media("/media/artist.avif")} type="image/avif" />
+              <img
+                src={media("/media/artist.webp")}
+                alt={dict.about.heading}
+                loading="lazy"
+                className="plate aspect-[3/2] w-full object-cover"
+              />
+            </picture>
+            {["blossom", "iris"].map((id, i) => (
+              <picture key={id}>
                 <source srcSet={media(`/media/posters/${id}.avif`)} type="image/avif" />
                 <img
                   src={media(`/media/posters/${id}.webp`)}
                   alt=""
                   loading="lazy"
-                  className={`w-full plate object-cover ${i === 0 ? "aspect-[4/3]" : "aspect-square"}`}
+                  className="plate aspect-square w-full object-cover"
                 />
               </picture>
             ))}

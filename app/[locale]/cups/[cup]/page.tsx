@@ -58,16 +58,17 @@ export default async function CupPage({ params }: { params: Promise<{ locale: st
           </Link>
           <h1 className="mt-4 text-4xl font-extrabold sm:text-6xl">{info.name}</h1>
           <p className="mt-4 max-w-md text-lg leading-relaxed opacity-90">{info.story}</p>
+          <p className="mt-6 max-w-md text-sm leading-relaxed opacity-75">{dict.status.glassesNote}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href={path(locale, "order")}
+              href={path(locale, "cups")}
               className="rounded-full bg-espresso px-6 py-3.5 font-bold text-cream-ink"
               style={cup.textOnWorld === "light" ? { backgroundColor: "var(--color-cream-ink)", color: "var(--color-espresso)" } : undefined}
             >
-              {dict.common.buildThisDrink}
+              {dict.common.backToCups}
             </Link>
-            <Link href={path(locale, "menu")} className="rounded-full border-2 border-current px-6 py-3.5 font-bold">
-              {dict.common.viewMenu}
+            <Link href={path(locale, "about")} className="rounded-full border-2 border-current px-6 py-3.5 font-bold">
+              {dict.pages.about.title}
             </Link>
           </div>
 

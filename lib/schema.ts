@@ -1,31 +1,19 @@
 import { shop } from "./config";
-import { menu } from "./menu";
 import type { Locale } from "./config";
 
-const DAY = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-/** CafeOrCoffeeShop + Menu JSON-LD (site-plan §7). */
+/**
+ * clocoffee has no premises, so this is deliberately NOT CafeOrCoffeeShop /
+ * LocalBusiness schema — that would assert an address, hours and orderability
+ * that do not exist, and Google would surface them. Brand schema only.
+ */
 export function shopJsonLd(locale: Locale, baseUrl: string) {
   return {
     "@context": "https://schema.org",
-    "@type": "CafeOrCoffeeShop",
+    "@type": "Brand",
     name: shop.name,
     url: `${baseUrl}/${locale}`,
+    logo: `${baseUrl}/media/posters/wordmark-espresso.webp`,
     image: `${baseUrl}/media/posters/hero.webp`,
-    address: { "@type": "PostalAddress", streetAddress: shop.address[locale], addressCountry: "LB" },
-    servesCuisine: "Coffee",
-    currenciesAccepted: "USD, LBP",
-    paymentAccepted: "Cash",
-    openingHoursSpecification: shop.hours.flatMap((h, i) =>
-      h ? [{ "@type": "OpeningHoursSpecification", dayOfWeek: DAY[i], opens: h.open, closes: h.close }] : [],
-    ),
-    hasMenu: {
-      "@type": "Menu",
-      hasMenuItem: menu.map((m) => ({
-        "@type": "MenuItem",
-        name: m.name[locale],
-        offers: { "@type": "Offer", price: m.usd.toFixed(2), priceCurrency: "USD" },
-      })),
-    },
+    sameAs: [`https://instagram.com/${shop.instagram}`],
   };
 }

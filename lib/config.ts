@@ -1,5 +1,8 @@
 /**
- * Single source of truth for shop content.
+ * Single source of truth for brand content.
+ *
+ * clocoffee is a BRAND, not a café: there are no premises, no opening hours
+ * and nothing is for sale. Anything implying otherwise does not belong here.
  * ── PLACEHOLDER ── every value marked below is invented and must be replaced
  * with Chloe's real content before launch. Swapping them is the whole job.
  */
@@ -13,30 +16,8 @@ export const shop = {
   name: "clocoffee",
   /** PLACEHOLDER — real WhatsApp order number, international format, digits only */
   whatsapp: "9613000000",
-  /** PLACEHOLDER — real street address */
-  address: { en: "Main Street, Beirut, Lebanon", ar: "الشارع الرئيسي، بيروت، لبنان", fr: "Rue principale, Beyrouth, Liban" },
-  /** PLACEHOLDER — real map query for the embed + directions link */
-  mapQuery: "clocoffee Beirut Lebanon",
   /** PLACEHOLDER — real Instagram handle */
   instagram: "clocoffee",
-  timezone: "Asia/Beirut",
-  /** PLACEHOLDER — real opening hours, 24h clock, null = closed. 0 = Sunday. */
-  hours: [
-    { open: "09:00", close: "20:00" }, // Sun
-    { open: "07:30", close: "20:00" }, // Mon
-    { open: "07:30", close: "20:00" }, // Tue
-    { open: "07:30", close: "20:00" }, // Wed
-    { open: "07:30", close: "20:00" }, // Thu
-    { open: "07:30", close: "22:00" }, // Fri
-    { open: "09:00", close: "22:00" }, // Sat
-  ] as ({ open: string; close: string } | null)[],
-  /** PLACEHOLDER — delivery fee in USD, and the minimum order that unlocks delivery */
-  deliveryFee: 2,
-  deliveryMin: 8,
-  /** PLACEHOLDER — confirm each with Chloe; false values are simply not shown. */
-  amenities: { wifi: true, laptops: true, oatMilk: true, outdoorSeating: true, parking: false, cardPayment: true },
-  /** Payment methods shown on the order screen. */
-  payments: ["cash", "whish", "omt", "card"] as const,
   /** PLACEHOLDER — LBP per 1 USD; update when the rate moves */
   lbpPerUsd: 89500,
 } as const;

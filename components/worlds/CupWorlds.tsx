@@ -82,6 +82,7 @@ export function CupWorlds({ dict, locale }: { dict: Dict; locale: Locale }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 px-6 pt-14 text-center">
         <h1 className="text-3xl font-extrabold sm:text-5xl">{dict.worlds.heading}</h1>
         <p className="mt-2 opacity-85">{dict.worlds.sub}</p>
+        <p className="mx-auto mt-2 max-w-md text-sm opacity-70">{dict.status.glassesHeading}</p>
       </div>
       <div
         ref={track}

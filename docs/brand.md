@@ -1,5 +1,18 @@
 # CloCoffee — Brand and media reference
 
+> ## ⚠ What CloCoffee actually is (2026-08-22, from Habib)
+>
+> **A brand and a concept — not a café.** There are no premises, no opening hours, and nothing is for
+> sale. A physical café is the ambition, not a fact.
+>
+> **The hand-painted glasses are artwork.** They are not sold, and they are not what coffee is served
+> in. Drinks are served in the plain, clear clocoffee-branded glass. Earlier versions of this site had
+> customers *choosing* a painted glass in the order flow — that promised something that does not exist
+> and has been removed.
+>
+> The website's purpose is a pitch: making people take the brand seriously. Anything asserting an
+> address, hours, stock or orderability is therefore wrong by definition, not merely unverified.
+
 **Date:** 2026-08-21
 **Source:** five identity stills and two videos, supplied by Habib and committed under `assets/`.
 **Method:** every colour below was sampled from the committed files with Pillow (median of a masked

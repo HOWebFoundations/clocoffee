@@ -19,7 +19,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <HeroPour dict={dict} />
+      <HeroPour dict={dict} locale={locale} />
 
       {/* Cup teasers — the home page sells the idea, the cup pages tell it */}
       <section className="scroll-mt-20 bg-cream px-6 py-20 sm:py-28">

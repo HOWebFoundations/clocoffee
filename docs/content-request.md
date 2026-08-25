@@ -1,5 +1,11 @@
 # What we need from Chloe
 
+> **Superseded in large part (2026-08-22).** CloCoffee turned out to be a brand and concept with no
+> premises, so the requests below for address, opening hours, delivery terms and amenities no longer
+> apply — those sections have been removed from the site rather than filled in. What remains needed is
+> the Instagram handle, the story for the About page, and confirmation of the drink list and prices as
+> an aspirational menu.
+
 Everything below is currently **invented placeholder data on the live site**. Until it's replaced,
 the site is showing customers a fake phone number, fake prices and fake opening hours.
 

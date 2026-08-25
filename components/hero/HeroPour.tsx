@@ -15,7 +15,7 @@ const frameSrc = (i: number) => media(`/media/frames/${String(i).padStart(3, "0"
  * retired so the nearest-frame scan never sticks on it. Scroll work attaches
  * only while the runway is visible.
  */
-export function HeroPour({ dict }: { dict: Dict }) {
+export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
   const runway = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -173,15 +173,16 @@ export function HeroPour({ dict }: { dict: Dict }) {
             {dict.hero.tagline}
           </h1>
           <p className="mt-3 text-lg text-espresso/80">{dict.hero.sub}</p>
+          <p className="mt-2 text-sm font-semibold text-espresso/70">{dict.status.conceptNote}</p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
             <a
-              href="#builder"
+              href={`/${locale}/cups`}
               className="btn-liquid rounded-full bg-espresso px-7 py-3.5 font-bold text-cream-ink [--liquid:var(--color-violet-ink)]"
             >
-              {dict.hero.orderWhatsapp}
+              {dict.common.seeAllCups}
             </a>
             <a
-              href="#menu"
+              href={`/${locale}/menu`}
               className="btn-liquid rounded-full border-2 border-espresso px-7 py-3.5 font-bold text-espresso hover:text-cream-ink focus-visible:text-cream-ink [--liquid:var(--color-espresso)]"
             >
               {dict.hero.seeMenu}

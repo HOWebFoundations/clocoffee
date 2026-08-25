@@ -26,30 +26,27 @@ export interface Dict {
   };
   order: {
     heading: string; sub: string;
-    fulfilment: string; pickup: string; delivery: string;
-    when: string; asap: string; inMin: string;
     yourOrder: string; empty: string; addToOrder: string; added: string;
-    remove: string; qty: string; subtotal: string; deliveryFee: string; total: string;
-    name: string; namePh: string; address: string; addressPh: string;
-    notes: string; notesPh: string;
-    payment: string; payCash: string; payWhish: string; payOmt: string; payCard: string;
-    send: string; needName: string; needAddress: string; addAnother: string;
-    waPickup: string; waDelivery: string; waWhen: string; waName: string; waNotes: string;
+    remove: string; qty: string; subtotal: string; total: string;
+    name: string; namePh: string; notes: string; notesPh: string;
+    needName: string; addAnother: string;
+    waName: string; waNotes: string;
   };
   menu: {
     heading: string; sub: string; all: string;
     categories: Record<"coffee" | "iced" | "matcha" | "sweets", string>;
   };
   verdict: { heading: string; sub: string; placeholder: string; soundOn: string };
-  shop: {
-    heading: string; sub: string; openNow: string; closedNow: string; hoursToday: string;
-    directions: string; whatsappUs: string; photosSoon: string; frontAlt: string; hoursHeading: string;
-    days: [string, string, string, string, string, string, string];
-    closed: string;
-    amenitiesHeading: string;
-    amenities: Record<"wifi" | "laptops" | "oatMilk" | "outdoorSeating" | "parking" | "cardPayment", string>;
-  };
+  shop: { heading: string; sub: string };
   about: { heading: string; lede: string; body: string[]; cta: string };
+  /** Honest framing: clocoffee is a brand and a concept, not a café you can walk into. */
+  status: {
+    badge: string;
+    conceptNote: string;
+    cafeHeading: string; cafeBody: string; cafeCta: string;
+    glassesHeading: string; glassesNote: string;
+    orderNote: string; orderSend: string;
+  };
   footer: { follow: string; rights: string; madeBy: string };
   a11y: { skipIntro: string; playPour: string; pausePour: string; langSwitch: string; heroAlt: string };
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import { cups, media, shop, type Locale } from "@/lib/config";
+import { media, shop, type Locale } from "@/lib/config";
 import { builderPricing } from "@/lib/menu";
 import { priceLbp, priceUsd } from "@/lib/currency";
 import { track } from "@/lib/analytics";
@@ -9,10 +9,7 @@ import type { Dict } from "@/lib/i18n";
 type Base = keyof typeof builderPricing.bases;
 type Milk = keyof typeof builderPricing.milks;
 type Sweet = "zero" | "half" | "full";
-type CupChoice = "plain" | (typeof cups)[number]["id"];
-type Fulfilment = "pickup" | "delivery";
-
-interface Line { id: number; base: Base; milk: Milk; sweet: Sweet; cup: CupChoice; qty: number }
+interface Line { id: number; base: Base; milk: Milk; sweet: Sweet; qty: number }
 
 const unitPrice = (l: Pick<Line, "base" | "milk">) =>
   builderPricing.bases[l.base] + builderPricing.milks[l.milk];
@@ -45,31 +42,27 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
   const [base, setBase] = useState<Base>("latte");
   const [milk, setMilk] = useState<Milk>("whole");
   const [sweet, setSweet] = useState<Sweet>("half");
-  const [cup, setCup] = useState<CupChoice>("iris");
   const [justAdded, setJustAdded] = useState(false);
 
   // the order
   const [lines, setLines] = useState<Line[]>([]);
-  const [fulfilment, setFulfilment] = useState<Fulfilment>("pickup");
-  const [when, setWhen] = useState<"asap" | "10" | "20" | "30">("asap");
   const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
 
   const o = dict.order;
-  const cupData = cups.find((c) => c.id === cup);
-  const poster = cupData ? cupData.poster : "/media/posters/hero";
+  // drinks are served in the clear branded glass; the painted ones are artwork
+  const poster = "/media/posters/hero";
 
   const add = () => {
     setLines((prev) => {
       // same drink twice just bumps the quantity
-      const match = prev.find((l) => l.base === base && l.milk === milk && l.sweet === sweet && l.cup === cup);
+      const match = prev.find((l) => l.base === base && l.milk === milk && l.sweet === sweet);
       if (match) return prev.map((l) => (l === match ? { ...l, qty: l.qty + 1 } : l));
-      return [...prev, { id: Date.now() + prev.length, base, milk, sweet, cup, qty: 1 }];
+      return [...prev, { id: Date.now() + prev.length, base, milk, sweet, qty: 1 }];
     });
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 1200);
-    track("order_line_added", { base, cup });
+    track("order_line_added", { base });
   };
 
   const setQty = (id: number, delta: number) =>
@@ -78,39 +71,37 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
     );
 
   const subtotal = lines.reduce((sum, l) => sum + unitPrice(l) * l.qty, 0);
-  const fee = fulfilment === "delivery" && lines.length ? shop.deliveryFee : 0;
-  const total = subtotal + fee;
+  const total = subtotal;
 
   const label = (l: Line) =>
-    `${dict.builder.bases[l.base]} · ${dict.builder.milks[l.milk]} · ${dict.builder.sweet[l.sweet]} · ${
-      l.cup === "plain" ? dict.builder.cupPlain : dict.worlds.cups[l.cup].name
-    }`;
+    `${dict.builder.bases[l.base]} · ${dict.builder.milks[l.milk]} · ${dict.builder.sweet[l.sweet]}`;
 
-  const blocked = !lines.length || !name.trim() || (fulfilment === "delivery" && !address.trim());
+  const blocked = !lines.length || !name.trim();
 
   const waHref = useMemo(() => {
-    const whenText = when === "asap" ? o.asap : o.inMin.replace("{n}", when);
     const msg = [
       dict.builder.waIntro,
       "",
       ...lines.map((l) => `• ${l.qty}× ${label(l)} — ${priceUsd(unitPrice(l) * l.qty, locale)}`),
       "",
       `${o.waName}: ${name.trim()}`,
-      `${fulfilment === "pickup" ? o.waPickup : o.waDelivery}${fulfilment === "delivery" && address.trim() ? `: ${address.trim()}` : ""}`,
-      `${o.waWhen}: ${whenText}`,
       ...(notes.trim() ? [`${o.waNotes}: ${notes.trim()}`] : []),
       "",
       `${dict.builder.waTotal}: ${priceUsd(total, locale)} / ${priceLbp(total, locale)}`,
     ].join("\n");
     return `https://wa.me/${shop.whatsapp}?text=${encodeURIComponent(msg)}`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lines, name, address, notes, when, fulfilment, total, locale, dict]);
+  }, [lines, name, notes, total, locale, dict]);
 
   return (
     <section className="bg-paper px-6 pb-20 pt-28 sm:pb-28 sm:pt-32">
       <div className="mx-auto max-w-5xl">
         <h1 className="text-3xl font-extrabold sm:text-5xl">{o.heading}</h1>
         <p className="mt-2 text-espresso/75">{o.sub}</p>
+        {/* there is no café: say so before anyone builds an order expecting coffee */}
+        <p className="mt-5 rounded-2xl border-2 border-espresso/12 bg-cream px-5 py-4 text-sm leading-relaxed text-espresso/85">
+          {dict.status.orderNote}
+        </p>
 
         <div className="mt-10 grid gap-12 md:grid-cols-2">
           {/* ——— build a drink ——— */}
@@ -150,15 +141,6 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
                 ))}
               </div>
             </fieldset>
-            <fieldset className="mt-6">
-              <legend className="mb-2 text-sm font-bold uppercase tracking-widest text-espresso/70">4 · {dict.builder.steps.cup}</legend>
-              <div className="flex flex-wrap gap-2">
-                {cups.map((c) => (
-                  <Chip key={c.id} value={c.id as CupChoice} current={cup} set={setCup} label={dict.worlds.cups[c.id].name} />
-                ))}
-                <Chip value={"plain" as CupChoice} current={cup} set={setCup} label={dict.builder.cupPlain} />
-              </div>
-            </fieldset>
 
             <button
               type="button"
@@ -196,25 +178,6 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
             </ul>
           )}
 
-          {/* pickup / delivery */}
-          <fieldset className="mt-8">
-            <legend className="mb-2 text-sm font-bold uppercase tracking-widest text-espresso/70">{o.fulfilment}</legend>
-            <div className="flex flex-wrap gap-2">
-              <Chip value="pickup" current={fulfilment} set={setFulfilment} label={o.pickup} />
-              <Chip value="delivery" current={fulfilment} set={setFulfilment} label={`${o.delivery} +${priceUsd(shop.deliveryFee, locale)}`} />
-            </div>
-          </fieldset>
-
-          <fieldset className="mt-6">
-            <legend className="mb-2 text-sm font-bold uppercase tracking-widest text-espresso/70">{o.when}</legend>
-            <div className="flex flex-wrap gap-2">
-              <Chip value="asap" current={when} set={setWhen} label={o.asap} />
-              {(["10", "20", "30"] as const).map((n) => (
-                <Chip key={n} value={n} current={when} set={setWhen} label={o.inMin.replace("{n}", n)} />
-              ))}
-            </div>
-          </fieldset>
-
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <label className="block">
               <span className="mb-1.5 block text-sm font-bold uppercase tracking-widest text-espresso/70">{o.name}</span>
@@ -224,16 +187,6 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
                 className="w-full rounded-xl border-2 border-espresso/20 bg-paper px-4 py-3 outline-none focus:border-espresso"
               />
             </label>
-            {fulfilment === "delivery" && (
-              <label className="block">
-                <span className="mb-1.5 block text-sm font-bold uppercase tracking-widest text-espresso/70">{o.address}</span>
-                <input
-                  value={address} onChange={(e) => setAddress(e.target.value)} placeholder={o.addressPh}
-                  autoComplete="street-address"
-                  className="w-full rounded-xl border-2 border-espresso/20 bg-paper px-4 py-3 outline-none focus:border-espresso"
-                />
-              </label>
-            )}
             <label className="block sm:col-span-2">
               <span className="mb-1.5 block text-sm font-bold uppercase tracking-widest text-espresso/70">{o.notes}</span>
               <input
@@ -246,7 +199,6 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
           {/* totals */}
           <dl className="mt-8 space-y-1 border-t border-espresso/10 pt-4 text-sm">
             <div className="flex justify-between"><dt>{o.subtotal}</dt><dd>{priceUsd(subtotal, locale)}</dd></div>
-            {fee > 0 && <div className="flex justify-between"><dt>{o.deliveryFee}</dt><dd>{priceUsd(fee, locale)}</dd></div>}
             <div className="flex justify-between pt-2 text-lg font-extrabold">
               <dt>{o.total}</dt>
               <dd className="text-end">
@@ -256,10 +208,6 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
             </div>
           </dl>
 
-          <p className="mt-4 text-sm text-espresso/70">
-            {o.payment}: {o.payCash} · {o.payWhish} · {o.payOmt} · {o.payCard}
-          </p>
-
           <a
             href={blocked ? undefined : waHref}
             target="_blank"
@@ -267,7 +215,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
             aria-disabled={blocked}
             onClick={(e) => {
               if (blocked) { e.preventDefault(); return; }
-              track("whatsapp_handoff", { source: "order", lines: lines.length, total, fulfilment });
+              track("whatsapp_handoff", { source: "order", lines: lines.length, total });
             }}
             className={`btn-liquid mt-6 block rounded-full py-4 text-center font-bold transition-transform ${
               blocked
@@ -275,7 +223,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
                 : "bg-espresso text-cream-ink active:scale-[0.99] [--liquid:var(--color-violet-ink)]"
             }`}
           >
-            {!lines.length ? o.empty : !name.trim() ? o.needName : fulfilment === "delivery" && !address.trim() ? o.needAddress : o.send}
+            {!lines.length ? o.empty : !name.trim() ? o.needName : dict.status.orderSend}
           </a>
         </div>
       </div>

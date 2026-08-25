@@ -3,10 +3,10 @@ import type { Dict } from "./types";
 export const en: Dict = {
   meta: {
     title: "clocoffee — three cups, three worlds",
-    description: "A Beirut coffee shop with three hand-painted cups. Order on WhatsApp, build your drink, come say hi.",
+    description: "A Beirut café in the making, born from three hand-painted glasses. Meet the art, build the drink it will serve.",
   },
   pages: {
-    home: { title: "clocoffee — three cups, three worlds", description: "A Beirut coffee shop with three hand-painted cups. Order on WhatsApp, build your drink, come say hi." },
+    home: { title: "clocoffee — three cups, three worlds", description: "A Beirut café in the making, born from three hand-painted glasses. Meet the art, build the drink it will serve." },
     cups: { title: "The three cups", description: "Iris, Blossom and Ditsy — three tumblers painted by hand, each with its own world." },
     order: { title: "Build your drink", description: "Pick a base, milk, sweetness and cup. Four taps and it goes straight to our WhatsApp." },
     menu: { title: "Menu & prices", description: "Every coffee, iced drink, matcha and sweet we make, in USD and LBP." },
@@ -23,7 +23,7 @@ export const en: Dict = {
   nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "The café", order: "Order"  , open: "Index", close: "Close" },
   hero: {
     tagline: "Coffee, painted by hand.",
-    sub: "Three hand-painted cups. One little shop in Beirut.",
+    sub: "Three hand-painted glasses. A Beirut café in the making.",
     orderWhatsapp: "Order on WhatsApp",
     seeMenu: "See the menu",
     scroll: "Scroll to pour",

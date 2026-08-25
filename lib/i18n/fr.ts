@@ -7,10 +7,10 @@ import type { Dict } from "./types";
 export const fr: Dict = {
   meta: {
     title: "clocoffee — trois tasses, trois mondes",
-    description: "Un café à Beyrouth aux trois tasses peintes à la main. Commandez sur WhatsApp, composez votre boisson, passez nous voir.",
+    description: "Un café beyrouthin en devenir, né de trois verres peints à la main. Découvrez l’art, composez la boisson qu’il servira.",
   },
   pages: {
-    home: { title: "clocoffee — trois tasses, trois mondes", description: "Un café à Beyrouth aux trois tasses peintes à la main. Commandez sur WhatsApp, composez votre boisson, passez nous voir." },
+    home: { title: "clocoffee — trois tasses, trois mondes", description: "Un café beyrouthin en devenir, né de trois verres peints à la main. Découvrez l’art, composez la boisson qu’il servira." },
     cups: { title: "Les trois tasses", description: "Iris, Cerisier et Fleurettes — trois tasses peintes à la main, chacune avec son monde." },
     order: { title: "Composez votre boisson", description: "Une base, un lait, un sucrage, une tasse. Quatre gestes et la commande part sur WhatsApp." },
     menu: { title: "Menu et prix", description: "Tous nos cafés, boissons glacées, matchas et douceurs, en USD et en LBP." },
@@ -27,7 +27,7 @@ export const fr: Dict = {
   nav: { menu: "Menu", cups: "Les tasses", builder: "Composer", visit: "Le café", order: "Commander"  , open: "Index", close: "Fermer" },
   hero: {
     tagline: "Le café, peint à la main.",
-    sub: "Trois tasses peintes à la main. Une petite adresse à Beyrouth.",
+    sub: "Trois verres peints à la main. Un café beyrouthin en devenir.",
     orderWhatsapp: "Commander sur WhatsApp",
     seeMenu: "Voir le menu",
     scroll: "Faites défiler pour verser",

@@ -28,7 +28,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {dict.about.body.map((para, i) => <p key={i}>{para}</p>)}
             </div>
             <Link
-              href={path(locale, "visit")}
+              href={path(locale, "cups")}
               className="btn-liquid mt-10 inline-block rounded-full bg-espresso px-7 py-3.5 font-bold text-cream-ink [--liquid:var(--color-violet-ink)]"
             >
               {dict.about.cta}

@@ -41,7 +41,12 @@ export function Footer({ dict, locale }: { dict: Dict; locale: Locale }) {
           <a href={ig} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
             @{shop.instagram}
           </a>
-          <p>© {new Date().getFullYear()} {shop.name} · {dict.footer.rights} · {dict.footer.madeBy}</p>
+          <p>
+            © {new Date().getFullYear()} {shop.name} · {dict.footer.rights} ·{" "}
+            <a href="https://thehowf.com" target="_blank" rel="noopener" className="underline-offset-4 hover:underline">
+              {dict.footer.madeBy}
+            </a>
+          </p>
         </div>
       </div>
     </footer>

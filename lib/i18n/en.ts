@@ -11,7 +11,7 @@ export const en: Dict = {
     order: { title: "Build your drink", description: "Pick a base, milk, sweetness and cup. Four taps and it goes straight to our WhatsApp." },
     menu: { title: "Menu & prices", description: "Every coffee, iced drink, matcha and sweet we make, in USD and LBP." },
     visit: { title: "The café", description: "There isn’t one yet — clocoffee is a brand and a concept. Here’s where that stands." },
-    about: { title: "Our story", description: "Who paints the cups, and why every one is different." },
+    about: { title: "Our story", description: "Who paints the glasses, and why every one is different." },
   },
   common: {
     orderNow: "Order", backToCups: "All three cups", exploreMore: "Keep looking around",
@@ -20,7 +20,7 @@ export const en: Dict = {
     notFound: "This page went cold", notFoundBody: "The link you followed doesn't exist — but the coffee does.",
     backHome: "Back to the shop",
   },
-  nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "The café", order: "Order" , verdict: "Verdict" },
+  nav: { menu: "Menu", cups: "The cups", builder: "Build a drink", visit: "The café", order: "Order"  },
   hero: {
     tagline: "Coffee, painted by hand.",
     sub: "Three hand-painted cups. One little shop in Beirut.",
@@ -65,27 +65,12 @@ export const en: Dict = {
     heading: "The menu",
     sub: "Prices in USD and LBP. Cash, Whish or OMT.",
     all: "Everything",
+    indicative: "What clocoffee would serve. Prices are indicative — there’s no café to order from yet.",
     categories: { coffee: "Coffee", iced: "Iced", matcha: "Matcha", sweets: "Sweets" },
-  },
-  verdict: {
-    heading: "The Clo Coffee Verdict",
-    sub: "Every drink, reviewed. No mercy.",
-    placeholder: "Verdict reels are brewing — first review drops soon.",
-    soundOn: "Tap for sound",
   },
   shop: {
     heading: "Come find us",
     sub: "The cups live here.",
-  },
-  about: {
-    heading: "Every cup is painted by hand",
-    lede: "PLACEHOLDER — Chloe, replace this with the real story.",
-    body: [
-      "PLACEHOLDER — how clocoffee started, and when. A line or two about opening the shop.",
-      "PLACEHOLDER — who paints the cups, how long one takes, why hand-painting instead of printing.",
-      "PLACEHOLDER — what you want people to feel when they walk in.",
-    ],
-    cta: "Come see them in person",
   },
   status: {
     badge: "A concept in progress",
@@ -97,6 +82,16 @@ export const en: Dict = {
     glassesNote: "Each one is painted by hand as part of the brand\u2019s world. They aren\u2019t sold, and they aren\u2019t what your coffee is served in \u2014 that\u2019s the clear clocoffee glass.",
     orderNote: "There\u2019s no caf\u00e9 yet, so nothing here can be made today. Build a drink anyway \u2014 it\u2019s how ordering will work, and we\u2019d love to see what you\u2019d pick.",
     orderSend: "Send it to us on WhatsApp",
+  },
+  about: {
+    heading: "Chloe paints them, one at a time",
+    lede: "clocoffee is Chloe and coffee. The flower in the middle of the name is one of hers.",
+    body: [
+      "Three glasses exist so far. Van Gogh irises tangled with vines and lemons. A cherry-blossom branch caught mid-bloom. A scatter of tiny wildflowers that finds you a different one every time you turn it. Each one is painted by hand, so no two are ever quite the same.",
+      "They aren’t for sale and they aren’t what your coffee arrives in — that’s the plain clocoffee glass. These three are the artwork the whole brand grew out of, and the reason a flower replaced the first o.",
+      "PLACEHOLDER — Chloe: when you started painting, how long one glass takes, and what made you want a café. Two or three sentences in your own words is all this needs.",
+    ],
+    cta: "See the three",
   },
   footer: { follow: "Follow the cups", rights: "All rights reserved.", madeBy: "Site by HOWF" },
   a11y: {

@@ -12,6 +12,31 @@
 >
 > The website's purpose is a pitch: making people take the brand seriously. Anything asserting an
 > address, hours, stock or orderability is therefore wrong by definition, not merely unverified.
+>
+> ### The facts, as confirmed by Habib
+>
+> | | |
+> |---|---|
+> | **What it is** | A brand and a concept. No premises, nothing for sale. |
+> | **The name** | Chloe + coffee. The bloom replacing the first `o` is one of her paintings. |
+> | **Who paints** | Chloe — family. The glasses are her work, painted by hand, one at a time. |
+> | **How many** | Three designs exist. Iris/lemons, cherry blossom, ditsy florals. |
+> | **The differentiator** | The art. Hand-painted everything is the entire argument. |
+> | **Where** | Beirut, a specific area in mind (not yet disclosed to me). |
+> | **The ask** | None yet — the site exists for credibility, not to raise money. |
+> | **Serving vessel** | The plain clear clocoffee-branded glass, not the painted ones. |
+>
+> ### Imagery provenance — read before replacing any asset
+>
+> The three painted glasses **physically exist**. Every image and video of them on this site is
+> **AI-generated** (Higgsfield/Seedance) — renders of real objects, not photographs of them. Chloe is
+> not nearby and cannot easily photograph them.
+>
+> Habib was asked directly whether the site should disclose the AI imagery and **decided against it**
+> after the credibility risk was put to him. That is a settled decision, recorded here so it is not
+> reopened by accident. My view, for the record: for a brand whose whole pitch is that the art is real
+> and hand-made, undisclosed AI renders of that art are the one asset class that could undercut it.
+> Replacing them with real photographs remains the highest-value improvement available.
 
 **Date:** 2026-08-21
 **Source:** five identity stills and two videos, supplied by Habib and committed under `assets/`.

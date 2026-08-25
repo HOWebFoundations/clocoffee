@@ -9,7 +9,7 @@ export interface Dict {
     seeAllCups: string; buildThisDrink: string; viewMenu: string; findUs: string;
     notFound: string; notFoundBody: string; backHome: string;
   };
-  nav: { menu: string; cups: string; builder: string; visit: string; order: string; verdict: string };
+  nav: { menu: string; cups: string; builder: string; visit: string; order: string };
   hero: { tagline: string; sub: string; orderWhatsapp: string; seeMenu: string; scroll: string };
   worlds: {
     heading: string; sub: string; tapToPour: string; pouring: string;
@@ -33,10 +33,9 @@ export interface Dict {
     waName: string; waNotes: string;
   };
   menu: {
-    heading: string; sub: string; all: string;
+    heading: string; sub: string; all: string; indicative: string;
     categories: Record<"coffee" | "iced" | "matcha" | "sweets", string>;
   };
-  verdict: { heading: string; sub: string; placeholder: string; soundOn: string };
   shop: { heading: string; sub: string };
   about: { heading: string; lede: string; body: string[]; cta: string };
   /** Honest framing: clocoffee is a brand and a concept, not a café you can walk into. */

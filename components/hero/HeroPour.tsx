@@ -20,6 +20,7 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
+  const chipRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -30,6 +31,9 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
+
+    const hl0 = headlineRef.current;
+    if (hl0) { hl0.style.opacity = "0"; hl0.style.pointerEvents = "none"; }
 
     const frames: (HTMLImageElement | undefined)[] = new Array(FRAME_COUNT);
     let loaded = 0, disposed = false, current = -1, pending = 0;
@@ -75,9 +79,16 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
         draw(Math.round(p * (FRAME_COUNT - 1)));
         const hl = headlineRef.current;
         if (hl) {
-          hl.style.transform = `translateY(${(1 - p) * 12}vh)`;
-          hl.style.opacity = String(0.55 + p * 0.45);
+          // hold the text back for the whole pour; ease it in over the final
+          // stretch so it lands just as the glass finishes filling
+          const t = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
+          const e = t * t * (3 - 2 * t); // smoothstep
+          hl.style.opacity = String(e);
+          hl.style.transform = `translateY(${(1 - e) * 28}px)`;
+          hl.style.pointerEvents = e > 0.5 ? "" : "none";
         }
+        const chip = chipRef.current;
+        if (chip) chip.style.opacity = String(Math.max(0, 1 - p * 5));
       });
     };
 
@@ -196,7 +207,7 @@ export function HeroPour({ dict, locale }: { dict: Dict; locale: string }) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-[4.5rem] flex justify-center">
+        <div ref={chipRef} className="pointer-events-none absolute inset-x-0 top-[4.5rem] flex justify-center">
           <span className="rounded-full bg-paper/90 px-4 py-1.5 text-sm font-semibold text-espresso/75 motion-reduce:hidden">
             {dict.hero.scroll} ↓
           </span>

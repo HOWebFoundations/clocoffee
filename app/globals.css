@@ -148,3 +148,25 @@ h2, h3 { font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 48; }
   }
   .bloom-intro { display: none; }
 }
+
+/* ————— the drink that builds itself (order page) ————— */
+.glass-liquid { transition: transform 0.95s var(--ease-pour); }
+.glass-tint { transition: fill 0.45s ease; }
+@keyframes ice-drop {
+  0% { translate: 0 -140px; }
+  72% { translate: 0 5px; }
+  100% { translate: 0 0; }
+}
+.ice { animation: ice-drop 0.55s cubic-bezier(0.3, 0.6, 0.4, 1.15) both; }
+.ice-2 { animation-delay: 0.12s; }
+.ice-3 { animation-delay: 0.22s; }
+@keyframes drizzle-run { from { stroke-dashoffset: 150; } to { stroke-dashoffset: 0; } }
+.drizzle { stroke-dasharray: 150; animation: drizzle-run 0.7s ease-out both; }
+/* the finished drink flies down into the order list */
+.drink-view { transition: transform 0.5s cubic-bezier(0.55, 0, 0.85, 0.4), opacity 0.45s ease; }
+.drink-view.is-flying { transform: translateY(42vh) scale(0.16); opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .glass-liquid, .glass-tint, .drink-view { transition: none; }
+  .ice, .drizzle { animation: none; }
+  .drink-view.is-flying { opacity: 0; }
+}

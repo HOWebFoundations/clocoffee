@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
-import { media, shop, type Locale } from "@/lib/config";
+import { shop, type Locale } from "@/lib/config";
+import { DrinkGlass, MiniGlass } from "./DrinkGlass";
 import { builderPricing } from "@/lib/menu";
 import { priceLbp, priceUsd } from "@/lib/currency";
 import { track } from "@/lib/analytics";
@@ -43,6 +44,8 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
   const [milk, setMilk] = useState<Milk>("whole");
   const [sweet, setSweet] = useState<Sweet>("half");
   const [justAdded, setJustAdded] = useState(false);
+  const [flying, setFlying] = useState(false);
+  const [glassGen, setGlassGen] = useState(0); // remounts the glass so it re-pours fresh after an add
 
   // the order
   const [lines, setLines] = useState<Line[]>([]);
@@ -50,10 +53,14 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
   const [notes, setNotes] = useState("");
 
   const o = dict.order;
-  // drinks are served in the clear branded glass; the painted ones are artwork
-  const poster = "/media/posters/hero";
 
   const add = () => {
+    if (flying) return;
+    setFlying(true);
+    setTimeout(() => {
+      setFlying(false);
+      setGlassGen((g) => g + 1); // fresh glass pours the same drink back in
+    }, 520);
     setLines((prev) => {
       // same drink twice just bumps the quantity
       const match = prev.find((l) => l.base === base && l.milk === milk && l.sweet === sweet);
@@ -104,15 +111,15 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
         </p>
 
         <div className="mt-10 grid gap-12 md:grid-cols-2">
-          {/* ——— build a drink ——— */}
+          {/* ——— the drink, building itself as choices land ——— */}
           <div>
-            <div className="md:sticky md:top-24">
-              <figure className="mx-auto w-full max-w-[16rem] overflow-hidden plate">
-                <picture key={poster}>
-                  <source srcSet={media(`${poster}.avif`)} type="image/avif" />
-                  <img src={media(`${poster}.webp`)} alt="" loading="lazy" className="aspect-[9/16] w-full object-cover" />
-                </picture>
-              </figure>
+            {/* mobile: pinned above the chips so every tap is seen reacting;
+                desktop: sticky in its own column */}
+            <div className="sticky top-0 z-30 -mx-6 bg-paper/95 px-6 pb-2 pt-14 md:top-24 md:z-auto md:mx-0 md:bg-transparent md:p-0 md:pt-0">
+              <div className={`drink-view ${flying ? "is-flying" : ""}`}>
+                <DrinkGlass key={glassGen} base={base} milk={milk} sweet={sweet}
+                            className="mx-auto h-44 w-auto md:h-auto md:w-full md:max-w-[17rem]" />
+              </div>
             </div>
           </div>
 
@@ -162,6 +169,7 @@ export function OrderBuilder({ dict, locale }: { dict: Dict; locale: Locale }) {
             <ul className="mt-4 divide-y divide-espresso/10">
               {lines.map((l) => (
                 <li key={l.id} className="flex items-center gap-4 py-3">
+                  <MiniGlass base={l.base} milk={l.milk} className="h-12 w-9 shrink-0" />
                   <div className="min-w-0 flex-1">
                     <p className="font-bold">{label(l)}</p>
                     <p className="text-sm text-espresso/70">{priceUsd(unitPrice(l) * l.qty, locale)} · {priceLbp(unitPrice(l) * l.qty, locale)}</p>

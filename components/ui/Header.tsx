@@ -29,8 +29,8 @@ export function Header({ dict, locale }: { dict: Dict; locale: Locale }) {
   }, [open]);
 
   const labels: Record<Route, string> = {
-    "": dict.nav.menu, cups: dict.nav.cups, order: dict.order.heading,
-    menu: dict.nav.menu, visit: dict.nav.visit, about: dict.pages.about.title,
+    "": dict.nav.menu, cups: dict.nav.cups, order: dict.make.heading,
+    menu: dict.nav.menu, visit: dict.nav.visit, about: dict.pages.about.title, lookbook: dict.pages.lookbook.title,
   };
   const rest = pathname.split("/").slice(2).join("/");
 

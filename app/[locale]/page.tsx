@@ -5,6 +5,8 @@ import { path } from "@/lib/routes";
 import { getDict } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
 import { HeroPour } from "@/components/hero/HeroPour";
+import { Lately } from "@/components/ui/Lately";
+import { Glass } from "@/components/order/glass";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -72,25 +74,52 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* Straight to the two money actions */}
-      <section className="bg-espresso px-6 py-20 text-cream-ink sm:py-24">
-        <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2">
+      {/* Make a drink — the playable builder, teased with a static glass */}
+      <section className="bg-espresso px-6 py-20 text-cream-ink sm:py-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.1fr_1fr]">
           <div>
-            <h2 className="text-3xl sm:text-4xl">{dict.builder.heading}</h2>
-            <p className="mt-2 text-cream-ink/80">{dict.builder.sub}</p>
-            <Link href={path(locale, "order")} className="mt-5 inline-block rounded-full bg-blush font-bold text-espresso">
-              {dict.common.buildThisDrink}
-            </Link>
+            <p className="eyebrow text-cream-ink/60">{dict.make.heading}</p>
+            <h2 className="mt-3 text-4xl sm:text-6xl">{dict.home.makeHeading}</h2>
+            <p className="mt-4 max-w-md text-lg text-cream-ink/80">{dict.home.makeBody}</p>
+            <Link href={path(locale, "order")} className="btn mt-8 inline-block bg-cream-ink text-espresso">{dict.home.makeCta}</Link>
           </div>
-          <div>
-            <h2 className="text-3xl sm:text-4xl">{dict.menu.heading}</h2>
-            <p className="mt-2 text-cream-ink/80">{dict.menu.sub}</p>
-            <Link href={path(locale, "menu")} className="mt-5 inline-block rounded-full border-2 border-cream-ink font-bold">
-              {dict.common.viewMenu}
-            </Link>
+          <Link href={path(locale, "order")} aria-label={dict.home.makeCta} className="block">
+            <Glass
+              spec={{ temp: "iced", base: "coffee", milk: "oat", sweet: "half", syrup: "caramel", topping: "none", world: "iris" }}
+              uid="home" animate={false} className="mx-auto h-80 w-auto md:h-[26rem]"
+            />
+          </Link>
+        </div>
+      </section>
+
+      {/* Lookbook teaser */}
+      <section className="bg-cream px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="eyebrow text-espresso/55">{dict.pages.lookbook.title}</p>
+              <h2 className="mt-2 text-4xl sm:text-6xl">{dict.home.lookHeading}</h2>
+              <p className="mt-3 max-w-lg text-espresso/75">{dict.home.lookBody}</p>
+            </div>
+            <Link href={path(locale, "lookbook")} className="btn btn-ghost text-sm">{dict.home.lookCta}</Link>
+          </div>
+          <div className="mt-8 grid gap-3 md:grid-cols-3 md:gap-5">
+            {[
+              { src: "/media/posters/hero-wide", ratio: "aspect-[21/9]", span: true },
+              { src: "/media/detail/blossom", ratio: "aspect-[21/9] md:aspect-auto md:h-full" },
+            ].map((pl) => (
+              <Link key={pl.src} href={path(locale, "lookbook")} className={`plate block ${pl.span ? "md:col-span-2" : ""}`}>
+                <picture>
+                  <source srcSet={media(`${pl.src}.avif`)} type="image/avif" />
+                  <img src={media(`${pl.src}.webp`)} alt="" loading="lazy" className={`${pl.ratio} w-full object-cover`} />
+                </picture>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
+      <Lately dict={dict} tone="dark" />
     </>
   );
 }

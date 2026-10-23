@@ -1,7 +1,7 @@
 export interface Dict {
   meta: { title: string; description: string };
   /** Per-route <title>/description and the on-page lede. */
-  pages: Record<"home" | "cups" | "order" | "menu" | "visit" | "about", {
+  pages: Record<"home" | "cups" | "order" | "menu" | "visit" | "about" | "lookbook", {
     title: string; description: string;
   }>;
   common: {
@@ -16,21 +16,8 @@ export interface Dict {
     cups: Record<"iris" | "blossom" | "ditsy", { name: string; story: string }>;
   };
   builder: {
-    heading: string; sub: string;
-    steps: { base: string; milk: string; sweetness: string; cup: string };
-    bases: Record<"espresso" | "latte" | "iced" | "matcha", string>;
     milks: Record<"whole" | "oat" | "almond" | "none", string>;
     sweet: Record<"zero" | "half" | "full", string>;
-    cupPlain: string; yourDrink: string; sendWhatsapp: string; saveImage: string;
-    waIntro: string; waBase: string; waMilk: string; waSweet: string; waCup: string; waTotal: string;
-  };
-  order: {
-    heading: string; sub: string;
-    yourOrder: string; empty: string; addToOrder: string; added: string;
-    remove: string; qty: string; subtotal: string; total: string;
-    name: string; namePh: string; notes: string; notesPh: string;
-    needName: string; addAnother: string;
-    waName: string; waNotes: string;
   };
   menu: {
     heading: string; sub: string; all: string; indicative: string;
@@ -44,8 +31,29 @@ export interface Dict {
     conceptNote: string;
     cafeHeading: string; cafeBody: string; cafeCta: string;
     glassesHeading: string; glassesNote: string;
-    orderNote: string; orderSend: string;
   };
+  /** Make a drink — the playable builder. No prices, no cart, no form. */
+  make: {
+    heading: string; sub: string;
+    steps: Record<"temp" | "base" | "milk" | "sweet" | "syrup" | "topping" | "world", string>;
+    temp: Record<"hot" | "iced", string>;
+    bases: Record<"coffee" | "matcha", string>;
+    syrups: Record<"none" | "vanilla" | "caramel" | "rose" | "pistachio", string>;
+    toppings: Record<"none" | "cinnamon" | "cocoa" | "flower", string>;
+    /** drink-name words: the name is composed per locale in lib/drinkName.ts */
+    names: Record<"espresso" | "latte" | "icedLatte" | "coldBrew" | "matcha" | "matchaLatte" | "icedMatcha" | "icedMatchaLatte", string>;
+    nameMilk: Record<"oat" | "almond", string>;
+    nameSweet: Record<"half" | "full", string>;
+    yourDrink: string; save: string; saving: string; saved: string; share: string; download: string;
+    cardTag: string; cardSoon: string;
+  };
+  lookbook: { heading: string; lede: string; groups: Record<"mark" | "glasses" | "world" | "place", { title: string; note: string }> };
+  soon: {
+    waitHeading: string; waitBody: string; waitCta: string; waitMsg: string;
+    contactHeading: string; contactBody: string; contactCta: string;
+    igHeading: string; igBody: string;
+  };
+  home: { makeHeading: string; makeBody: string; makeCta: string; lookHeading: string; lookBody: string; lookCta: string };
   footer: { follow: string; rights: string; madeBy: string };
   a11y: { skipIntro: string; playPour: string; pausePour: string; langSwitch: string; heroAlt: string };
 }

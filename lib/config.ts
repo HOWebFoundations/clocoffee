@@ -16,6 +16,14 @@ export const shop = {
   name: "clocoffee",
   /** PLACEHOLDER — real WhatsApp order number, international format, digits only */
   whatsapp: "9613000000",
+  /** PLACEHOLDER — real contact email for partners / press */
+  email: "hello@clocoffee.com",
+  /** Curated "lately" tiles — Instagram's Basic Display API is dead, so this is a
+      hand-picked grid. Swap paths as new posts go up. */
+  instagramTiles: [
+    "/media/gallery/iris", "/media/detail/blossom", "/media/posters/cup-plain",
+    "/media/gallery/ditsy", "/media/bloom-md", "/media/posters/hero",
+  ] as readonly string[],
   /** PLACEHOLDER — real Instagram handle */
   instagram: "clocoffee",
   /** PLACEHOLDER — LBP per 1 USD; update when the rate moves */

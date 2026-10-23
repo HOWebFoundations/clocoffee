@@ -6,7 +6,7 @@ export interface Dict {
   }>;
   common: {
     orderNow: string; backToCups: string; exploreMore: string;
-    seeAllCups: string; buildThisDrink: string; viewMenu: string; findUs: string;
+    seeAllCups: string; buildThisDrink: string; viewMenu: string;
     notFound: string; notFoundBody: string; backHome: string;
   };
   nav: { menu: string; cups: string; builder: string; visit: string; order: string; open: string; close: string };
@@ -44,6 +44,7 @@ export interface Dict {
     names: Record<"espresso" | "latte" | "icedLatte" | "coldBrew" | "matcha" | "matchaLatte" | "icedMatcha" | "icedMatchaLatte", string>;
     nameMilk: Record<"oat" | "almond", string>;
     nameSweet: Record<"half" | "full", string>;
+    nameTopping: Record<"cinnamon" | "cocoa" | "flower", string>;
     yourDrink: string; save: string; saving: string; saved: string; share: string; download: string;
     cardTag: string; cardSoon: string;
   };

@@ -18,12 +18,18 @@ export function drinkName(spec: DrinkSpec, dict: Dict, locale: Locale): string {
   let head = n[key];
   if (spec.milk === "oat" || spec.milk === "almond") {
     const q = dict.make.nameMilk[spec.milk];
-    head = locale === "en" ? `${q} ${head.charAt(0).toLowerCase()}${head.slice(1)}` : `${head} ${q}`;
+    if (locale === "en") {
+      // the qualifier sits after "Iced": "Iced oat latte", never "Oat iced latte"
+      const lower = `${head.charAt(0).toLowerCase()}${head.slice(1)}`;
+      head = lower.startsWith("iced ") ? `iced ${q.toLowerCase()} ${lower.slice(5)}` : `${q} ${lower}`;
+    } else {
+      head = `${head} ${q}`;
+    }
   }
   const extras: string[] = [];
   if (spec.syrup !== "none") extras.push(dict.make.syrups[spec.syrup].toLowerCase());
   if (spec.sweet !== "zero") extras.push(dict.make.nameSweet[spec.sweet]);
-  if (spec.topping !== "none") extras.push(dict.make.toppings[spec.topping].toLowerCase());
+  if (spec.topping !== "none") extras.push(dict.make.nameTopping[spec.topping]);
   const sep = locale === "ar" ? "، " : ", ";
   const name = [head, ...extras].join(sep);
   return locale === "ar" ? name : name.charAt(0).toUpperCase() + name.slice(1);

@@ -17,7 +17,6 @@ export const en: Dict = {
   common: {
     orderNow: "Order", backToCups: "All three cups", exploreMore: "Keep looking around",
     seeAllCups: "Meet the cups", buildThisDrink: "Build this drink", viewMenu: "See the menu",
-    findUs: "Find the shop",
     notFound: "This page went cold", notFoundBody: "The link you followed doesn't exist — but the coffee does.",
     backHome: "Back to the shop",
   },
@@ -85,6 +84,7 @@ export const en: Dict = {
     names: { espresso: "Espresso", latte: "Latte", icedLatte: "Iced latte", coldBrew: "Cold brew", matcha: "Matcha", matchaLatte: "Matcha latte", icedMatcha: "Iced matcha", icedMatchaLatte: "Iced matcha latte" },
     nameMilk: { oat: "Oat", almond: "Almond" },
     nameSweet: { half: "lightly sweet", full: "sweet" },
+    nameTopping: { cinnamon: "cinnamon", cocoa: "cocoa", flower: "dried flower" },
     yourDrink: "Your drink", save: "Save as a story", saving: "Making your card…", saved: "Saved",
     share: "Share", download: "Download",
     cardTag: "made at clocoffee.vercel.app", cardSoon: "A Beirut café in the making",

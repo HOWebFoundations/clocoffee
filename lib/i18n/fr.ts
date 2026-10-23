@@ -21,7 +21,6 @@ export const fr: Dict = {
   common: {
     orderNow: "Commander", backToCups: "Les trois tasses", exploreMore: "Continuez la visite",
     seeAllCups: "Découvrir les tasses", buildThisDrink: "Composer cette boisson", viewMenu: "Voir le menu",
-    findUs: "Trouver le café",
     notFound: "Cette page a refroidi", notFoundBody: "Le lien que vous avez suivi n'existe pas — le café, si.",
     backHome: "Retour au café",
   },
@@ -89,6 +88,7 @@ export const fr: Dict = {
     names: { espresso: "Espresso", latte: "Latte", icedLatte: "Latte glacé", coldBrew: "Cold brew", matcha: "Matcha", matchaLatte: "Matcha latte", icedMatcha: "Matcha glacé", icedMatchaLatte: "Matcha latte glacé" },
     nameMilk: { oat: "à l’avoine", almond: "à l’amande" },
     nameSweet: { half: "légèrement sucré", full: "sucré" },
+    nameTopping: { cinnamon: "cannelle", cocoa: "cacao", flower: "fleur séchée" },
     yourDrink: "Votre boisson", save: "Enregistrer en story", saving: "Préparation de la carte…", saved: "Enregistrée",
     share: "Partager", download: "Télécharger",
     cardTag: "fait sur clocoffee.vercel.app", cardSoon: "Un café beyrouthin en devenir",

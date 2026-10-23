@@ -75,7 +75,7 @@ export function MakeDrink({ dict, locale }: { dict: Dict; locale: Locale }) {
 
   return (
     <section
-      className="relative min-h-svh overflow-hidden pb-20 pt-24 sm:pt-28"
+      className="relative min-h-svh overflow-x-clip pb-20 pt-24 sm:pt-28"
       style={{ backgroundColor: w.bg, color: ink, transition: "background-color 0.7s ease, color 0.7s ease" }}
     >
       {/* top-lit world */}
@@ -84,10 +84,9 @@ export function MakeDrink({ dict, locale }: { dict: Dict; locale: Locale }) {
 
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1fr_1.05fr] md:gap-16">
         {/* ——— the drink ——— */}
-        <div className="sticky top-0 z-30 -mx-6 px-6 pb-4 pt-12 md:top-24 md:mx-0 md:self-start md:px-0 md:pt-0"
-             style={{ backgroundColor: w.bg, transition: "background-color 0.7s ease" }}>
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-full md:hidden"
-               style={{ background: `linear-gradient(180deg, ${w.bg2}, transparent)`, opacity: 0.85 }} aria-hidden="true" />
+        <div className="sticky top-0 z-30 -mx-6 px-6 pb-4 pt-12 md:top-24 md:mx-0 md:self-start md:px-0 md:pt-0">
+          <div className="pointer-events-none absolute inset-0 md:hidden"
+               style={{ background: `linear-gradient(180deg, ${w.bg2} 0%, ${w.bg} 100%)`, transition: "background 0.7s ease" }} aria-hidden="true" />
           <div className="relative">
             <p className="eyebrow opacity-70">{m.yourDrink}</p>
             <h1 className="mt-1 text-2xl leading-tight sm:text-4xl md:text-5xl">{name}</h1>
@@ -138,7 +137,7 @@ export function MakeDrink({ dict, locale }: { dict: Dict; locale: Locale }) {
       </div>
 
       {/* static twin for export — never animated, never seen */}
-      <div ref={exportRef} aria-hidden="true" className="pointer-events-none absolute -left-[9999px] top-0 h-[420px] w-[300px]">
+      <div ref={exportRef} aria-hidden="true" className="pointer-events-none fixed -left-[9999px] top-0 h-[420px] w-[300px]">
         <Glass spec={spec} uid="export" animate={false} className="h-full w-full" />
       </div>
     </section>

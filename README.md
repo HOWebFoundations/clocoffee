@@ -1,43 +1,63 @@
 # clocoffee
 
-Website for CloCoffee — a coffee shop known for three hand-painted can-shaped tumblers.
-
-**Status:** built, placeholder content. The full site exists and builds statically — three locales
-(EN / AR-RTL / FR), all eight sections from the plan. What blocks launch is content, not code: the real
-menu, prices, WhatsApp number, hours, address, and shop photos (see `lib/config.ts` and `lib/menu.ts`,
-every placeholder is marked).
+Website for clocoffee — a Beirut coffee brand built around three hand-painted glasses. A brand and a
+concept, not a café: there are no premises and nothing is for sale. The site exists to make the idea
+credible.
 
 ```
 npm install && npm run dev     # local dev
-npm run build                  # static production build
+npm run build                  # static production build (every page prerendered, three locales)
 ```
 
-## Where things stand
+## What the site is
 
-The plan of record is [`docs/site-plan.md`](docs/site-plan.md); the visual identity is inventoried in
-[`docs/brand.md`](docs/brand.md). It covers the creative concept
-("three cups, three worlds"), the section-by-section interaction spec, the asset manifest and where each asset
-comes from, the stack, a hard performance budget, and a three-week time-box.
+A gallery, not a storefront. Six pages, each with its own URL in EN, AR (RTL) and FR:
 
-Read the **Open items** table at the end of that document first. Several of them — the menu and prices, the
-WhatsApp number, real photos of the shop — are blockers for Week 1, and none of them are code.
+| Page | Route | What it does |
+|---|---|---|
+| Home | `/` | The scroll-driven pour. The headline is hidden until the glass is full. Teasers for the glasses, the drink maker, the lookbook, Instagram. |
+| The glasses | `/cups`, `/cups/{iris,blossom,ditsy}` | One page per painted glass, each in its own world colour. Artwork, not merchandise. |
+| Make a drink | `/order` | A menu you play with: hot or iced, coffee or matcha, milk, sweetness, syrup, topping, world. The glass builds live. No prices, no cart, no form — the payoff is an Instagram story card. |
+| Lookbook | `/lookbook` | Everything the brand looks like, grouped: the mark, the glasses, the world, the place. |
+| Menu | `/menu` | The intended menu with indicative prices in USD and LBP. States plainly that there is no café to order from yet. |
+| About | `/about` | Chloe, the painting, the name. |
+| Visit | `/visit` | No café yet: a waiting list (WhatsApp, email fallback), a contact route for partners and press, the artwork note, the Instagram grid. |
 
-Source media lives in [`assets/`](assets/) — two videos, five identity stills, three per-cup pour clips and
-their posters. The three painted cups are confirmed real; the palette in `docs/brand.md` is sampled from those
-files, not estimated.
+Nav is a single "Index" button opening an overlay. Motion is gentle fades only; the pour scrub lives on
+the homepage alone.
+
+## Decisions that are settled
+
+Recorded in [`docs/brand.md`](docs/brand.md) — read its preamble before changing content:
+
+- The painted glasses are artwork. They are never sold, and drinks are not served in them.
+- Imagery is AI-generated from real objects; the decision not to disclose that is Habib's and is closed.
+- The menu is an intended menu; prices are indicative.
+- Credit HOWF with a link to thehowf.com (footer).
+
+## Placeholders still to fill
+
+Every placeholder is marked `PLACEHOLDER` in `lib/config.ts`: the Instagram handle, the contact email,
+the WhatsApp number, the LBP rate. The Instagram grid (`components/ui/Lately.tsx`) is curated from
+`shop.instagramTiles` — Instagram no longer offers a public feed API, so it is a hand-picked set of tiles
+that link to the profile.
 
 ## Stack as built
 
-Next.js 15 App Router, TypeScript, Tailwind 4, GSAP ScrollTrigger + Lenis (both dynamically imported —
-first-load JS is 114 kB against the 200 kB budget). Menu data is a typed in-repo file (`lib/menu.ts`);
-moving it to Supabase later is a data-layer swap, not a redesign. Media currently ships from `/public`
-(5.3 MB); the plan's R2 move is a `MEDIA_BASE` change in `lib/config.ts`.
+Next.js 15 App Router, TypeScript, Tailwind 4, static prerender for every locale and page. No animation
+library: the hero scrub is a canvas frame sequence, reveals are an IntersectionObserver and a CSS
+transition. Fonts via `next/font` (Fraunces, Nunito, Amiri, IBM Plex Sans Arabic). The live glass in the
+drink maker is an SVG component under `components/order/glass/`; the story card is drawn to a canvas
+(`components/order/StoryCard.ts`) at 1080×1920 and handed to the Web Share API, falling back to a
+download.
+
+Deployed on Vercel (project `clocoffee`). The team uses SAML SSO, so the Vercel CLI cannot deploy with a
+team-scoped token; deploys go through the REST API with a token pasted at deploy time. No token is
+stored in the repo.
 
 ## Ground rules carried into the build
 
-- Higgsfield generates pixels, not components. The interactive layer is code.
 - Colour comes from `docs/brand.md`, which is sampled from the committed assets. Never re-pick by eye.
-- Spend credits only on what a camera cannot do. Shoot the cups and the interior for real.
-- LCP under 2.5 s on a mid-range Android over 4G; first-load JS under 200 KB gzipped; Lighthouse mobile 90+.
-- Every motion effect degrades to a static poster under `prefers-reduced-motion`.
-- One KPI: completed WhatsApp handoffs from the drink builder.
+- Nothing on the site may assert an address, opening hours, stock or orderability.
+- Every motion effect degrades to a static image under `prefers-reduced-motion`.
+- Keep the first-load JS small: the heaviest page is the drink maker, and it ships no library.

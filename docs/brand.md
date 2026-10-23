@@ -38,6 +38,24 @@
 > and hand-made, undisclosed AI renders of that art are the one asset class that could undercut it.
 > Replacing them with real photographs remains the highest-value improvement available.
 
+> ### Site format — decided 2026-10-23
+>
+> Three question rounds with Habib settled how the site should feel and what the "order" page is for:
+>
+> - **The whole site is a gallery**, an artist's lookbook. Six pages, minimal nav behind an "Index"
+>   button, serif headings, full-bleed plates on mobile and framed plates on desktop, gentle fades only.
+>   The pour scrub stays on the homepage and nowhere else.
+> - **"Make a drink" replaces ordering.** Habib disliked the drawn, cartoon glass and the amount of
+>   honesty copy and form-filling. The page is now *a menu you play with*: hot or iced, coffee or
+>   matcha, milk, sweetness, syrup, topping and the painted world as a backdrop. A soft-realistic glass
+>   that matches the renders builds live. Stripped from the page: prices, the form and WhatsApp send,
+>   the multi-drink cart. One line of the concept note stays. The payoff is **a story card** (name of
+>   the drink, wordmark, the chosen world, the handle) saved through the share sheet or as a download.
+> - **The menu page keeps indicative prices** and says there is no café to order from.
+> - **Added because they were missing:** a full lookbook (`/lookbook`), a contact route and a waiting
+>   list on `/visit` (WhatsApp with an email fallback), and a curated Instagram grid ("Lately").
+>   There is no public Instagram feed API any more, so the grid is hand-picked tiles linking out.
+
 **Date:** 2026-08-21
 **Source:** five identity stills and two videos, supplied by Habib and committed under `assets/`.
 **Method:** every colour below was sampled from the committed files with Pillow (median of a masked

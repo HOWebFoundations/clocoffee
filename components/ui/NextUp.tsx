@@ -10,7 +10,7 @@ export function NextUp({ dict, locale, exclude }: { dict: Dict; locale: Locale; 
     { route: "order", label: dict.make.heading },
     { route: "lookbook", label: dict.pages.lookbook.title },
     { route: "menu", label: dict.common.viewMenu },
-    { route: "visit", label: dict.common.findUs },
+    { route: "visit", label: dict.soon.waitHeading },
   ];
   const links = all.filter((l) => l.route !== exclude);
   return (

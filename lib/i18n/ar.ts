@@ -21,7 +21,6 @@ export const ar: Dict = {
   common: {
     orderNow: "اطلب", backToCups: "الأكواب الثلاثة", exploreMore: "تابع التصفّح",
     seeAllCups: "تعرّف على الأكواب", buildThisDrink: "ركّب هذا المشروب", viewMenu: "شاهد القائمة",
-    findUs: "مكان المحل",
     notFound: "هذه الصفحة بردت", notFoundBody: "الرابط الذي فتحته غير موجود — أمّا القهوة فموجودة.",
     backHome: "العودة إلى المحل",
   },
@@ -89,6 +88,7 @@ export const ar: Dict = {
     names: { espresso: "إسبريسو", latte: "لاتيه", icedLatte: "لاتيه بارد", coldBrew: "كولد برو", matcha: "ماتشا", matchaLatte: "ماتشا لاتيه", icedMatcha: "ماتشا باردة", icedMatchaLatte: "ماتشا لاتيه باردة" },
     nameMilk: { oat: "بحليب الشوفان", almond: "بحليب اللوز" },
     nameSweet: { half: "سكّر خفيف", full: "حلو" },
+    nameTopping: { cinnamon: "قرفة", cocoa: "كاكاو", flower: "زهرة مجفّفة" },
     yourDrink: "مشروبك", save: "احفظه كستوري", saving: "نحضّر بطاقتك…", saved: "حُفظت",
     share: "شارك", download: "نزّل الصورة",
     cardTag: "صُنع في clocoffee.vercel.app", cardSoon: "مقهى بيروتي قيد التكوين",

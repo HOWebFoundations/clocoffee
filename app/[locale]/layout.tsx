@@ -7,7 +7,6 @@ import { getDict } from "@/lib/i18n";
 import { shopJsonLd } from "@/lib/schema";
 import { BloomIntro } from "@/components/intro/BloomIntro";
 import { Header } from "@/components/ui/Header";
-import { OrderBar } from "@/components/ui/OrderBar";
 import { Footer } from "@/components/footer/Footer";
 import "../globals.css";
 
@@ -62,10 +61,8 @@ export default async function LocaleLayout({
         />
         <BloomIntro skipLabel={dict.a11y.skipIntro} />
         <Header dict={dict} locale={locale} />
-        {/* pb-24 clears the mobile order bar */}
-        <main className="pb-24 md:pb-0">{children}</main>
+        <main>{children}</main>
         <Footer dict={dict} locale={locale} />
-        <OrderBar dict={dict} />
       </body>
     </html>
   );

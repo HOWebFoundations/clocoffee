@@ -14,9 +14,9 @@ type Plate = { src: string; ratio: string; span?: boolean; video?: boolean };
 /** Everything the brand looks like, grouped. Paths are /media/… without extension; avif+webp pairs exist for each. */
 const GROUPS: { key: "mark" | "glasses" | "world" | "place"; plates: Plate[] }[] = [
   { key: "mark", plates: [
-    { src: "/media/posters/wordmark-espresso", ratio: "aspect-[1/1]", span: true },
-    { src: "/media/bloom-md", ratio: "aspect-[1/1]" },
     { src: "/media/video/bloom", ratio: "aspect-[1/1]", video: true },
+    { src: "/media/posters/wordmark-espresso", ratio: "aspect-[1/1]" },
+    { src: "/media/posters/bloom-tile", ratio: "aspect-[1/1]" },
   ] },
   { key: "glasses", plates: [
     { src: "/media/gallery/iris", ratio: "aspect-[4/5]" },

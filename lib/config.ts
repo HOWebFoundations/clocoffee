@@ -22,7 +22,7 @@ export const shop = {
       hand-picked grid. Swap paths as new posts go up. */
   instagramTiles: [
     "/media/gallery/iris", "/media/detail/blossom", "/media/posters/cup-plain",
-    "/media/gallery/ditsy", "/media/bloom-md", "/media/posters/hero",
+    "/media/gallery/ditsy", "/media/posters/bloom-tile", "/media/posters/hero",
   ] as readonly string[],
   /** PLACEHOLDER — real Instagram handle */
   instagram: "clocoffee",
